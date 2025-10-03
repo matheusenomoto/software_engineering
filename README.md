@@ -19,6 +19,10 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 * [Blog](https://matheusenomoto.com/) - Articles on software, engineering, and product development
 * [LinkedIn](https://www.linkedin.com/in/matheus-lopes-enomoto/) - Let’s connect
 
+## Content
+[Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/data_structures_and_algorithms.md)
+
 ## Courses
 
 ## Bibliography
+* Hands-On Data Structures and Algorithms with Python - Basant Agarwal
