@@ -98,6 +98,48 @@ The collections module provides several types of containers, which are objects u
 
 ### Introduction to Algorithm Design
 
+**Introduction to Algorithms**
+
+An algorithm is a sequence of steps that must be followed to complete a specific task/question.
+
+<img width="411" height="127" alt="image" src="https://github.com/user-attachments/assets/c60b5b24-7af5-45db-b264-ae93f8cc0d18" />
+
+**Analysis of the unfolding of an algorithm**
+
+Generally, the time performance of the algorithm is measured by the size of your input data, N, and the time and memory space used by it.
+
+**Time complexity**
+
+The time complexity of the algorithm is how long it takes to run on a computer system to produce output. The purpose of analyzing the time complexity of the algorithm is to determine, for a specific problem and more than one algorithm, which of the algorithms is most efficient in relation to the time required for its execution. The execution time of the algorithm is the sum of the time required by all instructions.
+
+```python
+def linear_search(arr, key):
+    for i in range(len(arr)):
+        if arr[i] == key:
+            return i
+    return -1
+```
+
+**Asymptotic notation**
+
+When analyzing the time complexity of an algorithm, the growth rate (order of growth) is very important when the input size is large. When the input size becomes large, we only consider the higher-order terms and ignore irrelevant terms.
+
+- **Big-Theta(Θ) notation**: Represents the worst-case runtime complexity with a tight bound.
+- **Big-O(O) notation**: Represents the worst-case runtime complexity with an upper bound, which ensures that the function never grows faster than the upper bound.
+- **Big-Omega(Ω) notation**: Represents the lower bound on an algorithm's execution time. It measures the best time for the algorithm to execute.
+
+**Theta notation**
+
+$T(n) = \Theta(F(n))$
+
+**Big-O notation**
+
+$T(n) = O(F(n))$
+
+**Omega notation**
+
+$T(n) = \Omega(F(n))$
+
 ### Algorithm Design Techniques and Strategies
 
 ### Linked Lists
