@@ -93,7 +93,7 @@ The collections module provides several types of containers, which are objects u
 - **Counter**: A dictionary that returns the counts corresponding to its objects/keys.
 - **UserDict UserList UserString**: These data types are used to add more functionality to your base data structure, such as dictionary, list, and string. We can subclass them to obtain a custom dict/list/string.
 
-<img width="1149" height="353" alt="image" src="../img/python_data_types_tree.png"/>
+<img width="1149" height="353" alt="python_data_types_tree" src="../img/python_data_types_tree.png"/>
 
 ### Introduction to Algorithm Design
 
@@ -101,7 +101,7 @@ The collections module provides several types of containers, which are objects u
 
 An algorithm is a sequence of steps that must be followed to complete a specific task/question.
 
-<img width="411" height="127" alt="image" src="https://github.com/user-attachments/assets/c60b5b24-7af5-45db-b264-ae93f8cc0d18" />
+<img width="411" height="127" alt="algorithm" src="../img/algorithm.png" />
 
 **Analysis of the unfolding of an algorithm**
 
