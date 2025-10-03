@@ -93,8 +93,8 @@ The collections module provides several types of containers, which are objects u
 - **Counter**: A dictionary that returns the counts corresponding to its objects/keys.
 - **UserDict UserList UserString**: These data types are used to add more functionality to your base data structure, such as dictionary, list, and string. We can subclass them to obtain a custom dict/list/string.
 
-<img width="1149" height="353" alt="image" src="https://github.com/user-attachments/assets/eedf062e-c810-4b20-a167-2ddb9912e38f" />
-
+<img width="1149" height="353" alt="image" src="../img/python_data_types_tree.png"/>
+![python data types tree](../img/python_data_types_tree.png)
 
 ### Introduction to Algorithm Design
 
