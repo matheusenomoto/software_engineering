@@ -5,7 +5,7 @@ The materials come from a mix of courses, books, and personal research.
 
 The goal of this repo is to serve both as my personal learning archive and as a reference for anyone interested in exploring software engineering concepts.
 
-## 🔎 What You’ll Find Here
+## What You’ll Find Here
 
 * Notes and summaries from courses
 * Key takeaways from books
