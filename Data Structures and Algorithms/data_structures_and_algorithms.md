@@ -94,7 +94,6 @@ The collections module provides several types of containers, which are objects u
 - **UserDict UserList UserString**: These data types are used to add more functionality to your base data structure, such as dictionary, list, and string. We can subclass them to obtain a custom dict/list/string.
 
 <img width="1149" height="353" alt="image" src="../img/python_data_types_tree.png"/>
-![python data types tree](../img/python_data_types_tree.png)
 
 ### Introduction to Algorithm Design
 
