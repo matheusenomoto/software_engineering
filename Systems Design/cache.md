@@ -77,3 +77,82 @@ After fetching, it stores a copy in the cache and returns the data.
 **Pros**: Cache stores only requested data.
 
 **Cons**: The first request for data is always slow (cache miss).
+
+![cache_aside_lazy_loading](../img/cache_aside_lazy_loading.png)
+
+**Read-Through**
+
+How it works: The application treats the cache as the primary source. On a cache miss, the cache fetches from the original source itself.
+
+**Pros**: Cleaner application code.
+
+**Cons**: Requires cache providers that support this (e.g., Redis modules, Hazelcast).
+
+![cache_read_through](../img/cache_read_through.png)
+
+**Write-Through**
+
+How it works: When data is written/updated, it is written to both cache and original source simultaneously. The operation only completes when both succeed.
+
+**Pros**: Strong consistency between cache and source. No data loss.
+
+**Cons**: Higher write latency since two synchronous operations are needed.
+
+![cache_write_through](../img/cache_write_through.png)
+
+**Write-Back (or Write-Behind)**
+
+How it works: The application writes only to the cache (very fast). The cache then writes asynchronously to the original source, after some time or batch size.
+
+**Pros**: Extremely low write latency. Ideal for write-heavy systems.
+
+**Cons**: Risk of data loss if the cache fails before persisting to the source.
+
+![cache_write_back](../img/cache_write_back.png)
+
+**Ways to Apply Caching**
+
+Full-Page Cache: Store the complete HTML of a page. Best for static or lightly personalized pages, like a blog homepage.
+
+Fragment Caching: Store parts of a page, such as a header, footer, or “recommended products” widget. Useful for dynamic pages with static sections.
+
+Data/Object Cache: The most granular approach. Store serialized objects or data structures, like a user profile JSON or product details.
+
+**Adapting Legacy Systems**
+
+Adding cache to a legacy system requires caution:
+
+Identify Bottlenecks: Use monitoring (APM) to find slow, frequent DB queries or API calls. These are prime cache candidates.
+
+Isolate Data Access: Refactor code so all access to an entity goes through a single layer (e.g., a Repository or Service). Makes cache integration easier.
+
+Choose Invalidation Strategy: The most critical part.
+- TTL (Time-To-Live): Simplest option. Data expires after a fixed time (e.g., 5 minutes). Acceptable if slight staleness is tolerable.
+- Explicit Invalidation: When data updates (e.g., UPDATE product SET price = 100), code explicitly removes the cache entry.
+
+Gradual Implementation: Start with low-risk, high-read data (e.g., country list, product categories). Don’t try caching everything at once.
+
+Add Monitoring: Build dashboards for cache hit ratio. A high ratio (above 90%) means cache is effective.
+
+**When to Use Cache**
+
+Read-Heavy Data: Data read far more often than written (e.g., blog posts, product catalog, videos).
+
+Expensive Computations: Store results of CPU- or time-intensive operations (e.g., complex reports, recommendation engines).
+
+Static or Semi-Static Data: Rarely or never changing info (e.g., list of states, app configurations).
+
+Reduce External API Calls: Avoid rate limits or third-party costs.
+
+Improve User Experience: Whenever fast response times are critical for user satisfaction.
+
+**When NOT to Use Cache**
+
+Write-Heavy Data: If data changes on every read or very frequently, invalidation costs may outweigh benefits.
+
+Critical Real-Time Data: For data where strong consistency is mandatory (e.g., bank account balances, flight seat availability, live auction bids).
+
+Simple Low-Traffic Systems: Cache overhead may not justify performance gains.
+
+Unique Per-Request Data: If each request fetches completely different data, cache hits won’t occur, making caching useless.
+
