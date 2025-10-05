@@ -21,7 +21,11 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 
 ## Content
 * [Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/)
+  * [Data Structure and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/data_structures_and_algorithms.md) 
 * [Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Sistems%20Design/)
+  * [Cache](https://github.com/matheusenomoto/software_engineering/blob/main/Systems%20Design/cache.md)
+  * [Load Balancing](https://github.com/matheusenomoto/software_engineering/blob/main/Systems%20Design/load_balancing.md)
+  * [RAID](https://github.com/matheusenomoto/software_engineering/blob/main/Systems%20Design/raid.md)
 
 ## Courses
 
