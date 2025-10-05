@@ -20,8 +20,8 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 * [LinkedIn](https://www.linkedin.com/in/matheus-lopes-enomoto/) - Let’s connect
 
 ## Content
-[Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/)
-[Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Sistems%20Design/)
+* [Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/)
+* [Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Sistems%20Design/)
 
 ## Courses
 
