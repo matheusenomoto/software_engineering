@@ -36,4 +36,4 @@ Stores the actual DNS records (A, AAAA, MX, TXT, etc.) for a domain. Authoritati
 
 ## DNS message format
 
-![alt text](../img/dns_message_format.png)
+![dns_message_format](../img/dns_message_format.png)
