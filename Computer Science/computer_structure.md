@@ -1,8 +1,8 @@
 # Computer Structure
 
-![alt text](../img/computer_structure_von_neumann_architecture.png)
+![computer_structure_von_neumann_architecture](../img/computer_structure_von_neumann_architecture.png)
 
-![alt text](../img/computer_structure_memory.png)
+![computer_structure_memory](../img/computer_structure_memory.png)
 
 **Stack**
 
