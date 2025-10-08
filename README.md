@@ -33,6 +33,7 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
   * [DNS](https://github.com/matheusenomoto/software_engineering/blob/main/Internet/dns.md)
   * [Layer 2 and 3](https://github.com/matheusenomoto/software_engineering/blob/main/Internet/layer_2_and_3.md)
   * [Layer 7](https://github.com/matheusenomoto/software_engineering/blob/main/Internet/layer_7.md)
+  * [HTTP Codes](https://github.com/matheusenomoto/software_engineering/blob/main/Internet/http_codes.md)
 * [Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Sistems%20Design/)
   * [Cache](https://github.com/matheusenomoto/software_engineering/blob/main/Systems%20Design/cache.md)
   * [Load Balancing](https://github.com/matheusenomoto/software_engineering/blob/main/Systems%20Design/load_balancing.md)
