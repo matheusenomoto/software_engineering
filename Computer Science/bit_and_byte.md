@@ -2,13 +2,13 @@
 
 A bit is the smallest unit of digital information, representing a single binary value of either 0 or 1. A byte, on the other hand, is a larger unit of digital information, typically consisting of eight bits.
 
-![alt text](../img/bit_and_byte_01.png)
+![bit_and_byte_01](../img/bit_and_byte_01.png)
 
-![alt text](../img/bit_and_byte_02.png)
+![bit_and_byte_02](../img/bit_and_byte_02.png)
 
-![alt text](../img/bit_and_byte_03.png)
+![bit_and_byte_03](../img/bit_and_byte_03.png)
 
-![alt text](../img/bit_and_byte_04.png)
+![bit_and_byte_04](../img/bit_and_byte_04.png)
 
 
 ## ASCII
