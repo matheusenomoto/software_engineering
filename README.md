@@ -20,8 +20,10 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 * [LinkedIn](https://www.linkedin.com/in/matheus-lopes-enomoto/) - Let’s connect
 
 ## Content
-* [Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/)
+* [Computer Science](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/)
   * [Bit And Byte](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/bit_and_byte.md)
+  * [Computer Structure](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/computer_structure.md)
+
 * [Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/)
   * [Data Structure and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/data_structures_and_algorithms.md) 
 * [Systems Design](https://github.com/matheusenomoto/software_engineering/blob/main/Sistems%20Design/)
