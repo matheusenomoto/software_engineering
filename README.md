@@ -23,8 +23,8 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 * [Computer Science](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/)
   * [Bit And Byte](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/bit_and_byte.md)
   * [Computer Structure](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/computer_structure.md)
-  * [Internet BASICS](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/internet_basics.md)
-
+  * [Internet BASIC](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/internet_basic.md)
+  * [Multimedia BASIC](https://github.com/matheusenomoto/software_engineering/blob/main/Computer%20Science/multimedia_basic.md)
 * [Data Structures and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/)
   * [Data Structure and Algorithms](https://github.com/matheusenomoto/software_engineering/blob/main/Data%20Structures%20and%20Algorithms/data_structures_and_algorithms.md)
 * [Internet](https://github.com/matheusenomoto/software_engineering/blob/main/Internet/)
