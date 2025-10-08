@@ -7,3 +7,5 @@ PDU stands for Protocol Data Unit. It refers to a unit of data transmitted betwe
 ![ip_header_ipv4](../img/ip_header_ipv4.png)
 
 ![ip_header_ipv6](../img/ip_header_ipv6.png)
+
+## Summary Table
