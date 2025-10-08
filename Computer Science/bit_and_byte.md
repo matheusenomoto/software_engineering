@@ -11,11 +11,11 @@ A bit is the smallest unit of digital information, representing a single binary 
 ![bit_and_byte_04](../img/bit_and_byte_04.png)
 
 
-## ASCII
+## [ASCII](https://www.ascii-code.com/)
 
 Stands for American Standard Code for Information Interchange. It is a 7-bit character code where each individual bit represents a unique character. The page shows the extended ASCII table which is based on the Windows-1252 character set which is an 8 bit ASCII table with 256 characters and symbols.
 
-## Unicode
+## [Unicode](https://www.unicode.org/charts/)
 
 An international encoding standard for use with different languages and scripts, by which each letter, digit, or symbol is assigned a unique numeric value that applies across different platforms and programs.
 
