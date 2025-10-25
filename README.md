@@ -20,8 +20,9 @@ I’m **Matheus Enomoto**, a Solutions Architect and Software/Product Engineer p
 * [LinkedIn](https://www.linkedin.com/in/matheus-lopes-enomoto/) - Let’s connect
 
 ## Content
+
 * [Math](https://github.com/matheusenomoto/software_engineering/tree/main/Math)
- * [Statistic](https://github.com/matheusenomoto/software_engineering/tree/main/Math/Basic%20Statistics)
+  * [Statistic](https://github.com/matheusenomoto/software_engineering/tree/main/Math/Basic%20Statistics)
   * [Basic Statistic](https://github.com/matheusenomoto/software_engineering/blob/main/Math/Basic%20Statistics/basic_statistics.md)
  * [Calculus](https://github.com/matheusenomoto/software_engineering/tree/main/Math/Calculus)
   *  [Calculus](https://github.com/matheusenomoto/software_engineering/blob/main/Math/Calculus/calculus.md) 
