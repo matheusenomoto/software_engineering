@@ -141,6 +141,76 @@ $T(n) = \Omega(F(n))$
 
 ### Algorithm Design Techniques and Strategies
 
+**Algorithm Design Techniques**
+
+It is a powerful tool for visualizing and clearly understanding precisely formulated real-world problems. Brute-force approaches test all possible solution combinations to solve a problem. This approach can provide useful solutions for limited input sizes, but becomes very inefficient as the input size increases. Design technique guidelines also help to easily develop new algorithms for complex problems. There are several algorithm design paradigms.
+
+**Recursion**
+
+Calls itself repeatedly to solve the problem until a specific condition is met. Each recursive call generates another recursive call.
+
+* **Base Case**
+    * They tell the recursion when it should end, meaning that the recursion will stop when the base condition is met.
+* **Recursive Case**
+    * The function calls itself recursively and so we move towards the base criteria.
+
+<img width="616" height="340" alt="image" src="https://github.com/user-attachments/assets/9fceb609-85ab-4a16-bfe4-43b726e7e93a" />
+
+**Divide and Conquer**
+
+The divide-and-conquer paradigm divides a problem into smaller subproblems and solves them; finally, it combines the results to obtain a globally optimal solution. In divide-and-conquer design, the problem is divided into two smaller subproblems, with each subproblem solved recursively.
+
+* Binary search
+* Merge sort
+* Quick sort
+* Fast multiplication algorithm
+* Strassen matrix multiplication
+* Closest pair of points
+
+* **binary search**
+    * First, it compares the search element with the middle element of the list. If the search element is smaller than the middle element, the half of the list with elements larger than the middle element is discarded. The process is repeated recursively. With each iteration, half of the search space is discarded.
+
+<img width="454" height="421" alt="image" src="https://github.com/user-attachments/assets/d5e13080-b74d-4728-91f1-8750f3ef6550" />
+
+* **merge sort**
+    * Concept: Divide the list into halves recursively, sort each half, and merge them back together in sorted order.
+    * Time Complexity: O(n log n) in all cases
+    * Stability: Stable
+    * Use Case: Great for large datasets and linked lists.
+
+**Dynamic Programming**
+
+It's the most powerful design technique for solving optimization problems. These problems typically have many possible solutions. It's based on the intuition of the divide-and-conquer technique. Dynamic programming problems have two important characteristics.
+
+* **optimal substructure**
+    * Given a problem, if the solution can be obtained by combining the solutions of its subproblems, the problem is said to have an optimal substructure. For example, the i-th Fibonacci number in its seriescan be calculated from the i-th -1 and the i-th -2.
+* **overlapping subproblems**
+    * When an algorithm needs to repeatedly solve the same subproblem, this happens because the problem has overlapping subproblems.
+
+**Greedy Algorithms**
+
+They involve optimization and combinatorial problems. The goal is to obtain the optimal solution from many possible solutions at each stage. The goal is to obtain the local optimal solution, which may ultimately lead to the global optimal solution.
+
+* **shortest path**
+    * The shortest path problem requires us to find the shortest possible route between nodes in a graph. Dijkstra's algorithm is a very popular method for solving this problem using the greedy approach.
+
+<img width="395" height="203" alt="image" src="https://github.com/user-attachments/assets/8a48e84e-c661-410d-a5eb-4af994dc5943" />
+
+* **Dijkstra Algorithm**
+    * It is used in Internet routing protocols, primarily in link-state protocols. The main protocols that use this algorithm are:
+    * **OSPF (Open Shortest Path First)**
+        * Category: Internal Routing Protocol (IGP).
+        * Dijkstra's Usage: Each router calculates the shortest path tree to all other routers in the network based on link state information.
+        * Resulting tree: SPF (Shortest Path First) tree.
+        * Function: Determine the best route to each destination in the AS (Autonomous System). 
+    * **IS-IS (Intermediate System to Intermediate System)**
+        * Category: Interior Routing Protocol (IGP), widely used in provider networks.
+        * Use of Dijkstra: Also uses a variation of the SPF algorithm to calculate the best routes based on a link-state database.
+        * Similarity to OSPF: Both are link-state protocols and share similar operating principles.
+* **Bellman-Ford**
+    * Find the shortest path from a single source to all vertices, and it handles negative weights. Also detects negative weight cycles.
+
+
 ### Linked Lists
 
 ### Stacks and Queues
