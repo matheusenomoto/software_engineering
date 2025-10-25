@@ -213,6 +213,8 @@ They involve optimization and combinatorial problems. The goal is to obtain the 
 
 ### Linked Lists
 
+
+
 ### Stacks and Queues
 
 ### Trees
