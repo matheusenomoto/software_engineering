@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [Preliminaries](#preliminaries)
-2. [Part I - Exploratory Data Analysis](#part-i-exploratory-data-analysis)
+2. [Part I Exploratory Data Analysis](#part-i-exploratory-data-analysis)
 3. [Data Summary](#data-summary)
 
 ## Preliminaries
@@ -23,5 +23,5 @@ Imagine we are studying the relationship between income and consumption expendit
 
 A dataset is a collection of data, usually tabulated. Each element indicates several characteristics. Each column represents a particular variable. Each row corresponds to a specific member of the dataset. Each value is known as a datum.
 
-## Part I - Exploratory Data Analysis
+## Part I Exploratory Data Analysis
 ## Data Summary
