@@ -4,6 +4,7 @@
 1. [Preliminaries](#preliminaries)
 2. [Part I Exploratory Data Analysis](#part-i-exploratory-data-analysis)
 3. [Data Summary](#data-summary)
+4. [Summary Measures](#summary-measures)
 
 ## Preliminaries
 
@@ -163,5 +164,10 @@ save_chart(fig5, "ratio_age_vs_experience")
 
 ```
 
+## Summary Measures
 
+**Measures of  Position** _mean, median, and mode_
 
+Typically, one of the following measures of central position (location) is used: mean, median, or mode.
+
+The mode is defined as the most frequent occurrence of the set of observed values; the median is the occurrence that occupies the central position of the series of observations, when they are arranged in ascending order; and finally, the arithmetic mean is the sum of the observations divided by their number.
