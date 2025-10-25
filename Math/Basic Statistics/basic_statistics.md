@@ -9,3 +9,6 @@ Statistical inference is one of the branches of statistics. This is the part of 
 Fundamentally, when analyzing data, we look for some form of regularity or pattern, or even model, present in the observations.
 
 Imagine we are studying the relationship between income and consumption expenditure for a group of individuals. We might obtain a graph like the one in the figure. Intuitively, we expect an individual's expenditure to be directly related to their income, so it is reasonable to assume a "linear relationship" between these two quantities. The points in Figure, of course, do not all lie on a straight line; this would be our standard or model. The difference between the data and the model constitutes the residuals.
+
+<img width="493" height="288" alt="image" src="https://github.com/user-attachments/assets/93cb3a92-c725-4a87-ad25-e8b6ec8a542e" />
+
