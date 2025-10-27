@@ -20,7 +20,7 @@ Parity: A more space-efficient data protection technique. Parity consists of err
 
 **RAID 0 (Striping)**
 
-![raid_0](../img/raid_0.png)
+<img width="238" height="391" alt="raid_0" src="https://github.com/user-attachments/assets/22509e66-5116-42f4-bd12-8f69ca949815" />
 
 How it works: Uses only the striping technique. Data is split and distributed across all disks.
 
@@ -37,7 +37,7 @@ Use case: Video editing, temporary file caching, or applications needing extreme
 
 **RAID 1 (Mirroring)**
 
-![raid_1](../img/raid_1.png)
+<img width="238" height="388" alt="raid_1" src="https://github.com/user-attachments/assets/10f10396-c88c-4894-9b59-aa5d28d989a1" />
 
 How it works: Uses only mirroring. Data is fully duplicated across each disk in the pair.
 
@@ -55,7 +55,7 @@ Use case: Small file servers, server OS disks, small databases, and applications
 
 **RAID 5 (Striping with Distributed Parity)**
 
-![raid_5](../img/raid_5.png)
+<img width="497" height="394" alt="raid_5" src="https://github.com/user-attachments/assets/7e05364b-40b2-440b-ad22-f849c58f9661" />
 
 How it works: Uses striping for data and distributes parity blocks across all disks.
 
@@ -74,7 +74,7 @@ Use case: File servers and general-purpose storage where cost, performance, and 
 
 **RAID 6 (Striping with Dual Parity)**
 
-![raid_6](../img/raid_6.png)
+<img width="628" height="395" alt="raid_6" src="https://github.com/user-attachments/assets/cef73bd9-47fd-44ad-8efd-180763b859b0" />
 
 How it works: Similar to RAID 5, but calculates and distributes two independent parity blocks for each data stripe.
 
@@ -95,7 +95,7 @@ These levels combine two or more standard RAID levels to get the best of both wo
 
 **RAID 10 (or RAID 1+0)**
 
-![raid_10](../img/raid_10.png)
+<img width="498" height="507" alt="raid_10" src="https://github.com/user-attachments/assets/9f73d692-f87f-4012-84c9-1af005c38045" />
 
 How it works: A stripe of mirrors. First, disks are grouped in RAID 1 pairs (mirroring). Then data is striped across these pairs.
 
@@ -112,7 +112,7 @@ Use case: High-performance databases, application servers, and environments requ
 
 **RAID 50 (or RAID 5+0)**
 
-![raid_50](../img/raid_50.png)
+<img width="1110" height="473" alt="raid_50" src="https://github.com/user-attachments/assets/80a6db4b-17da-42a9-b204-7aa53b0c811a" />
 
 How it works: A stripe of RAID 5 arrays. Multiple RAID 5 groups are created, and data is striped across them.
 
