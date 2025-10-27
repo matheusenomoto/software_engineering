@@ -14,10 +14,10 @@ One level below the root. The TLD server responds with: "Ask the authoritative s
 
 Stores the actual DNS records (A, AAAA, MX, TXT, etc.) for a domain. Authoritative server response: "www.example.com resolves to 93.184.216.34.
 
+<img width="1079" height="721" alt="dns_tree" src="https://github.com/user-attachments/assets/c9a9a67f-7449-46f7-82d9-0bb12f00e247" />
 
-![dns_tree](../img/dns_tree.png)
+<img width="943" height="645" alt="dns_workflow" src="https://github.com/user-attachments/assets/62c415e9-45b8-48ca-9313-db2d6f4ebcf6" />
 
-![dns_workflow](../img/dns_workflow.png)
 
 ## DNS Record Types
 
@@ -36,4 +36,4 @@ Stores the actual DNS records (A, AAAA, MX, TXT, etc.) for a domain. Authoritati
 
 ## DNS message format
 
-![dns_message_format](../img/dns_message_format.png)
+<img width="517" height="412" alt="dns_message_format" src="https://github.com/user-attachments/assets/b58b5cf3-9cfd-49e5-a1d9-f0c00457b7c5" />
