@@ -104,4 +104,3 @@
 |	iftop	|	Display network bandwidth usage.	|
 |	sar	|	Collect, report, or save system activity information.	|
 |	nc	|	Netcat utility for reading from and writing to network connections.	|
-<img width="427" height="1741" alt="image" src="https://github.com/user-attachments/assets/2c5521a6-9df1-44e1-93bd-325ba4292b20" />
