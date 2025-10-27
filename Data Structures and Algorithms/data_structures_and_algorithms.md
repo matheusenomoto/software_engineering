@@ -93,7 +93,9 @@ The collections module provides several types of containers, which are objects u
 - **Counter**: A dictionary that returns the counts corresponding to its objects/keys.
 - **UserDict UserList UserString**: These data types are used to add more functionality to your base data structure, such as dictionary, list, and string. We can subclass them to obtain a custom dict/list/string.
 
-<img width="1149" height="353" alt="python_data_types_tree" src="../img/python_data_types_tree.png"/>
+<img width="1149" height="353" alt="python_data_types_tree_01" src="https://github.com/user-attachments/assets/df311740-4b9d-49f5-8f1f-3d28ca8fabaa" />
+
+<img width="537" height="697" alt="python_data_types_tree_02" src="https://github.com/user-attachments/assets/9031e7c5-f97c-4578-9d45-6f04467d4c31" />
 
 ### Introduction to Algorithm Design
 
@@ -154,7 +156,7 @@ Calls itself repeatedly to solve the problem until a specific condition is met. 
 * **Recursive Case**
     * The function calls itself recursively and so we move towards the base criteria.
 
-<img width="616" height="340" alt="image" src="https://github.com/user-attachments/assets/9fceb609-85ab-4a16-bfe4-43b726e7e93a" />
+<img width="616" height="340" alt="algorithm_recursive_case" src="https://github.com/user-attachments/assets/9fceb609-85ab-4a16-bfe4-43b726e7e93a" />
 
 **Divide and Conquer**
 
@@ -170,7 +172,7 @@ The divide-and-conquer paradigm divides a problem into smaller subproblems and s
 * **binary search**
     * First, it compares the search element with the middle element of the list. If the search element is smaller than the middle element, the half of the list with elements larger than the middle element is discarded. The process is repeated recursively. With each iteration, half of the search space is discarded.
 
-<img width="454" height="421" alt="image" src="https://github.com/user-attachments/assets/d5e13080-b74d-4728-91f1-8750f3ef6550" />
+<img width="454" height="421" alt="algorithm_binary_search" src="https://github.com/user-attachments/assets/d5e13080-b74d-4728-91f1-8750f3ef6550" />
 
 * **merge sort**
     * Concept: Divide the list into halves recursively, sort each half, and merge them back together in sorted order.
@@ -194,7 +196,7 @@ They involve optimization and combinatorial problems. The goal is to obtain the 
 * **shortest path**
     * The shortest path problem requires us to find the shortest possible route between nodes in a graph. Dijkstra's algorithm is a very popular method for solving this problem using the greedy approach.
 
-<img width="395" height="203" alt="image" src="https://github.com/user-attachments/assets/8a48e84e-c661-410d-a5eb-4af994dc5943" />
+<img width="395" height="203" alt="algorithm_shortest_path" src="https://github.com/user-attachments/assets/8a48e84e-c661-410d-a5eb-4af994dc5943" />
 
 * **Dijkstra Algorithm**
     * It is used in Internet routing protocols, primarily in link-state protocols. The main protocols that use this algorithm are:
@@ -210,6 +212,112 @@ They involve optimization and combinatorial problems. The goal is to obtain the 
 * **Bellman-Ford**
     * Find the shortest path from a single source to all vertices, and it handles negative weights. Also detects negative weight cycles.
 
+```python
+# Define a weighted graph using an adjacency list (dictionary of dictionaries)
+graph = dict()
+graph['A'] = {'B': 5, 'D': 9, 'E': 2}
+graph['B'] = {'A': 5, 'C': 2}
+graph['C'] = {'B': 2, 'D': 3}
+graph['D'] = {'A': 9, 'F': 2, 'C': 3}
+graph['E'] = {'A': 2, 'F': 3}
+graph['F'] = {'E': 3, 'D': 2}
+
+# Initialize the shortest path table:
+# Each node maps to a list: [shortest_distance_from_origin, previous_node_in_path]
+table = {
+    'A': [0, None],               # Distance from A to A is 0
+    'B': [float('inf'), None],   # Unknown distances are set to infinity
+    'C': [float('inf'), None],
+    'D': [float('inf'), None],
+    'E': [float('inf'), None],
+    'F': [float('inf'), None]
+}
+
+# Constants for easier index access
+DISTANCE = 0
+PREVIOUS_NODE = 1
+INFINITY = float('inf')
+
+# Get the current shortest known distance to a given vertex
+def get_shortest_distance(table, vertex):
+    shortest_distance = table[vertex][DISTANCE]
+    return shortest_distance
+
+# Update the shortest distance to a vertex
+def set_shortest_distance(table, vertex, new_distance):
+    table[vertex][DISTANCE] = new_distance
+
+# Set the previous node for a given vertex (used for path reconstruction)
+def set_previous_node(table, vertex, previous_node):
+    table[vertex][PREVIOUS_NODE] = previous_node
+
+# Get the edge weight between two connected vertices
+def get_distance(graph, first_vertex, second_vertex):
+    return graph[first_vertex][second_vertex]
+
+# Get the next unvisited node with the smallest known distance
+def get_next_node(table, visited_nodes):
+    # All unvisited nodes
+    unvisited_nodes = list(set(table.keys()).difference(set(visited_nodes)))
+    # Start with first unvisited node as the min
+    assumed_min = table[unvisited_nodes[0]][DISTANCE]
+    min_vertex = unvisited_nodes[0]
+    
+    # Find the unvisited node with the smallest distance
+    for node in unvisited_nodes:
+        if table[node][DISTANCE] < assumed_min:
+            assumed_min = table[node][DISTANCE]
+            min_vertex = node
+    
+    return min_vertex
+
+# Main function to compute the shortest paths from origin to all other nodes
+def find_shortest_path(graph, table, origin):
+    visited_nodes = []          # Keep track of processed nodes
+    current_node = origin       # Start at the origin
+    starting_node = origin
+
+    while True:
+        adjacent_nodes = graph[current_node]
+        
+        # If all adjacent nodes are visited, move on
+        if set(adjacent_nodes).issubset(set(visited_nodes)):
+            pass
+        else:
+            # Get only the adjacent nodes not yet visited
+            unvisited_nodes = set(adjacent_nodes).difference(set(visited_nodes))
+            for vertex in unvisited_nodes:
+                distance_from_starting_node = get_shortest_distance(table, vertex)
+                
+                # Special case: if we're at the starting node and this vertex is being visited for the first time
+                if distance_from_starting_node == INFINITY and current_node == starting_node:
+                    total_distance = get_distance(graph, vertex, current_node)
+                else:
+                    # General case: calculate distance through the current node
+                    total_distance = get_shortest_distance(table, current_node) + get_distance(graph, current_node, vertex)
+                
+                # If the newly calculated path is shorter, update it
+                if total_distance < distance_from_starting_node:
+                    set_shortest_distance(table, vertex, total_distance)
+                    set_previous_node(table, vertex, current_node)
+            
+            # Mark current node as visited
+            visited_nodes.append(current_node)
+            print(visited_nodes)  # Debug print to track progress
+
+            # Stop if all nodes have been visited
+            if len(visited_nodes) == len(table.keys()):
+                break
+
+            # Pick the next node to process
+            current_node = get_next_node(table, visited_nodes)
+
+    return table  # Final shortest path table
+
+# Run the algorithm from node 'A'
+shortest_path_table = find_shortest_path(graph, table, 'A')
+
+```
 
 ### Linked Lists
 
@@ -223,13 +331,13 @@ It is a data structure in which data elements are stored in a linear order. They
 
 **linked lists**
 
-<img width="559" height="146" alt="linked-list" src="https://github.com/user-attachments/assets/10ab1781-b78d-4433-be9f-7090ceee160e" />
+<img width="559" height="146" alt="linked_list" src="https://github.com/user-attachments/assets/10ab1781-b78d-4433-be9f-7090ceee160e" />
 
 A node is an essential component of various data structures, such as linked lists. It is a data container and has one or more links that lead to other nodes, where a link is a pointer.
 
 **singly linked lists**
 
-<img width="711" height="189" alt="singly-linked-list" src="https://github.com/user-attachments/assets/09838cbb-f3c0-4e10-a137-90b9bcfd48aa" />
+<img width="711" height="189" alt="singly_linked_list" src="https://github.com/user-attachments/assets/09838cbb-f3c0-4e10-a137-90b9bcfd48aa" />
 
 ```python
 n1 = Node('eggs')
@@ -310,7 +418,7 @@ class SinglyLinkedList:
             self.tail = node
 ```
 
-<img width="583" height="232" alt="linked-list-append" src="https://github.com/user-attachments/assets/6cf80368-7a0d-4824-89e3-ff201c55a9b9" />
+<img width="583" height="232" alt="linked_list_append" src="https://github.com/user-attachments/assets/6cf80368-7a0d-4824-89e3-ff201c55a9b9" />
 
 **intermediate positions**
 
@@ -376,7 +484,7 @@ class SinglyLinkedList:
             print("The list has fewer elements than the index provided.")
 ```
 
-<img width="955" height="271" alt="linked-list-intermediate-position" src="https://github.com/user-attachments/assets/34e218f0-1cdd-4da3-ad3d-3a53a4d38e76" />
+<img width="955" height="271" alt="linked_list_intermediate_position" src="https://github.com/user-attachments/assets/34e218f0-1cdd-4da3-ad3d-3a53a4d38e76" />
 
 **search**
 
@@ -442,7 +550,7 @@ def delete(self, data):
             current = current.next
 ```
 
-<img width="886" height="297" alt="linked-list-delete" src="https://github.com/user-attachments/assets/6605609f-5a7c-45ef-bc30-70de48ea6eae" />
+<img width="886" height="297" alt="linked_list_delete" src="https://github.com/user-attachments/assets/6605609f-5a7c-45ef-bc30-70de48ea6eae" />
 
 **clear**
 
