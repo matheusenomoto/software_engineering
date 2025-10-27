@@ -1,7 +1,6 @@
 # Internet Basics
 
-![internet_basics_01](../img/internet_basics_01.png)
-
+<img width="944" height="565" alt="internet_basics_01" src="https://github.com/user-attachments/assets/55b23453-b6a4-42ef-8d1f-3fe211daacb7" />
 
 **traceroute**
 
