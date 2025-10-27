@@ -213,6 +213,246 @@ They involve optimization and combinatorial problems. The goal is to obtain the 
 
 ### Linked Lists
 
+**linked lists**
+
+It is a data structure in which data elements are stored in a linear order. They provide efficient storage in linear order through pointer-based structures. Pointers are used to store the memory addresses of data items.
+
+**arrays**
+
+It is a data structure in which data elements are stored in a linear order. They provide efficient storage in linear order through pointer-based structures. Pointers are used to store the memory addresses of data items. An array is a collection of data items of the same type, while a linked list is a collection of the same data types stored sequentially and connected by pointers. In lists, data elements are stored in different locations in memory, while in arrays, the elements are stored in contiguous locations in memory. The term base address refers to the address of the location in memory where the first element is stored, and offset refers to an integer that indicates the offset between the first element and a specific element.
+
+**linked lists**
+
+<img width="559" height="146" alt="linked-list" src="https://github.com/user-attachments/assets/10ab1781-b78d-4433-be9f-7090ceee160e" />
+
+A node is an essential component of various data structures, such as linked lists. It is a data container and has one or more links that lead to other nodes, where a link is a pointer.
+
+**singly linked lists**
+
+<img width="711" height="189" alt="singly-linked-list" src="https://github.com/user-attachments/assets/09838cbb-f3c0-4e10-a137-90b9bcfd48aa" />
+
+```python
+n1 = Node('eggs')
+n1 = Node('ham')
+n1 = Node('spam')
+
+n1.next = n2
+n2.next = n3
+
+current = n1
+
+while current:
+    print(current.data)
+    current = current.next
+
+def iter(self):
+    current = self.head
+    while current:
+        val = current.data
+        current = current.next
+        yield val
+
+```
+
+**append**
+
+**head no tail**
+
+```python
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    '''
+    iter all the linked list to append
+    '''
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = node
+```
+
+**head & tail**
+
+```python
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    '''
+    with head and tail
+    '''
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.size = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.tail:
+            self.tail.next = node
+            self.tail = node
+        else:
+            self.head = node
+            self.tail = node
+```
+
+<img width="583" height="232" alt="linked-list-append" src="https://github.com/user-attachments/assets/6cf80368-7a0d-4824-89e3-ff201c55a9b9" />
+
+**intermediate positions**
+
+```python
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.size = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.tail:
+            self.tail.next = node
+            self.tail = node
+        else:
+            self.head = node
+            self.tail = node
+    
+    def append_at_a_location(self, data, index):
+        if index < 0:
+            print("Invalid index")
+            return
+
+        node = Node(data)
+
+        if index == 0:
+            node.next = self.head
+            self.head = node
+            if self.tail is None:
+                self.tail = node
+            self.size += 1
+            return
+
+        current = self.head
+        prev = None
+        count = 0
+
+        while current:
+            if count == index:
+                node.next = current
+                if prev:
+                    prev.next = node
+                self.size += 1
+                return
+            prev = current
+            current = current.next
+            count += 1
+
+        if count == index:
+            if self.tail:
+                self.tail.next = node
+                self.tail = node
+            else:
+                self.head = self.tail = node
+            self.size += 1
+        else:
+            print("The list has fewer elements than the index provided.")
+```
+
+<img width="955" height="271" alt="linked-list-intermediate-position" src="https://github.com/user-attachments/assets/34e218f0-1cdd-4da3-ad3d-3a53a4d38e76" />
+
+**search**
+
+```python
+def iter(self):
+        current = self.head
+        while current:
+            val = current.data
+            current = current.next
+            yield val
+    
+    def search(self, data):
+        for node in self.iter():
+            if data == node:
+                return True
+        return False
+```
+
+**size**
+
+```python
+def size(self):
+        count = 0
+        current = self.head
+        while current:
+            count += 1
+            current = current.next
+        return count
+```
+
+**delete**
+
+```python
+def delete_first_node(self):
+        current = self.head
+        if self.head is None:
+            print('No data element to delete')
+        elif current == self.head:
+            self.head = current.next
+
+def delete_last_node(self):
+        current = self.head
+        prev = self.head
+        while current:
+            if current.next is None:
+                prev.next = current.next
+                self.size -=1
+            prev = current
+            current = current.next
+
+def delete(self, data):
+        current = self.head
+        prev = self.head
+        while current:
+            if current.data == data:
+                if current == self.head:
+                    self.head = current.next
+                else:
+                    prev.next = current.next
+                self.size -= 1
+                return
+            prev = current
+            current = current.next
+```
+
+<img width="886" height="297" alt="linked-list-delete" src="https://github.com/user-attachments/assets/6605609f-5a7c-45ef-bc30-70de48ea6eae" />
+
+**clear**
+
+```python
+def clear(self):
+        self.tail = None
+        self.head = None
+```
+**doubly linked list**
+
 
 
 ### Stacks and Queues
