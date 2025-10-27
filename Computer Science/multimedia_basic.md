@@ -2,7 +2,7 @@
 
 # RGB - Red Green Blue
 
-![multimedia_rgb_01](../img/multimedia_rgb_01.png)
+<img width="1118" height="403" alt="multimedia_rgb_01" src="https://github.com/user-attachments/assets/51a21ab8-09f0-46ef-a8e4-a18b41813ec8" />
 
 ## Compression
 
@@ -10,7 +10,7 @@
 
 class of data compression that allows the original data to be perfectly reconstructed from the compressed data.
 
-![multimedia_compression_lossleassly](../img/multimedia_compression_lossleassly.png)
+<img width="1235" height="419" alt="multimedia_compression_lossleassly" src="https://github.com/user-attachments/assets/326296ba-28ea-4549-9dd1-74e784b9f160" />
 
 **Lossily**
 
