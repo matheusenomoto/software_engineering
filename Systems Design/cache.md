@@ -78,7 +78,7 @@ After fetching, it stores a copy in the cache and returns the data.
 
 **Cons**: The first request for data is always slow (cache miss).
 
-![cache_aside_lazy_loading](../img/cache_aside_lazy_loading.png)
+<img width="642" height="396" alt="cache_aside_lazy_loading" src="https://github.com/user-attachments/assets/9af54c6c-f3f4-45d8-98d1-406aa6516a04" />
 
 **Read-Through**
 
@@ -88,7 +88,7 @@ How it works: The application treats the cache as the primary source. On a cache
 
 **Cons**: Requires cache providers that support this (e.g., Redis modules, Hazelcast).
 
-![cache_read_through](../img/cache_read_through.png)
+<img width="642" height="397" alt="cache_read_through" src="https://github.com/user-attachments/assets/507b5bac-4e0a-424b-b35a-d251c5e4d976" />
 
 **Write-Through**
 
@@ -98,7 +98,7 @@ How it works: When data is written/updated, it is written to both cache and orig
 
 **Cons**: Higher write latency since two synchronous operations are needed.
 
-![cache_write_through](../img/cache_write_through.png)
+<img width="642" height="372" alt="cache_write_through" src="https://github.com/user-attachments/assets/ef87519a-85d5-4202-beda-f8d5862672d3" />
 
 **Write-Back (or Write-Behind)**
 
@@ -108,7 +108,7 @@ How it works: The application writes only to the cache (very fast). The cache th
 
 **Cons**: Risk of data loss if the cache fails before persisting to the source.
 
-![cache_write_back](../img/cache_write_back.png)
+<img width="642" height="340" alt="cache_write_back" src="https://github.com/user-attachments/assets/3e3b694b-d971-4510-aaf0-d81a8b7a363a" />
 
 **Ways to Apply Caching**
 
