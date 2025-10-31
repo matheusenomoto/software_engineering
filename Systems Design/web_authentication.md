@@ -17,10 +17,15 @@
 * RCA
 * ECDSA
 
-**PLACEHOLDER IMAGE**
+<img width="934" height="452" alt="hmac_01" src="https://github.com/user-attachments/assets/4f71899d-5408-40ce-96c4-afbe77208b9e" />
+
 
 **HMAC** is a **symmetric** signing method the same secret key is used to sign and verify the token. This is simpler and more efficient, but it requires sharing the secret key with any service that needs to verify the token, which can be a security concern.
 
 **RSA** and **ECDSA**, on the other hand, are **asymmetric** signing methods, they use a private key to sign the token and a public key to verify it. This allows for a more secure architecture where private key is kept secret and only used for signing, while any service can verify the token using the public key.
 
 This adds some complexity and computational overhead compared to HMAC.
+
+<img width="972" height="432" alt="image" src="https://github.com/user-attachments/assets/cabceb1e-b17a-4df1-a894-dc74c574f8d1" />
+
+_**The choice of signing algorithm depends on your security requirements and system architeture**_. If you have a monolithic application or trust all the services in your system, HMAC might be sufficient. But if you have a microservice architecture or need to share JWTs with untrusted third-party services, RSA or ECDSA provide a more secure solution.
