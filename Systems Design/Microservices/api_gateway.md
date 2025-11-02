@@ -1,6 +1,6 @@
 # API Gateway
 
-[(Paper - GlobalLogic - Microservice Architecture: API Gateway Considerations - Sanjay Gadge and Vijaya Kotwani](https://mainlab.cs.ccu.edu.tw/presentation/pdf/(2017)Microservice-Architecture-API-Gateway-Considerations.pdf)
+[GlobalLogic - Microservice Architecture: API Gateway Considerations - Sanjay Gadge and Vijaya Kotwani](https://mainlab.cs.ccu.edu.tw/presentation/pdf/(2017)Microservice-Architecture-API-Gateway-Considerations.pdf)
 
 Basically, the API Gateway is a reverse proxy to microservices and acts as a single-entry point into the system.  It is similar to a Facade pattern from object-oriented design and similar to the notion of an “Anti-Corruption Layer” in Domain Driven Design.   It makes the processes of API design, implementation, and management considerably simpler and more consistent. The gateway helps to address some of the key concerns, including:
 
