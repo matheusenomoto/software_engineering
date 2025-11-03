@@ -8,8 +8,10 @@
 
 <img width="123" height="155" alt="Building Microservices: Designing Fine-Grained Systems" src="https://github.com/user-attachments/assets/ea468518-6156-45d5-b91f-c38aeca8ddb6" />
 
+## Summary
+* [What are microservices](#what-are-microservices)
 
-## What is microservice
+## What are microservices
 
 Microservices are services that can be launched independently and are modeled based on a business domain. A service encapsulates a functionality and makes it accessible to other services across networks.
 
@@ -17,5 +19,15 @@ Microservices is a type of service-oriented architecture, with a clear definitio
 
 <img width="1054" height="755" alt="microservice_example_01" src="https://github.com/user-attachments/assets/b72b09c3-2996-4047-bdc2-5734cf6edca1" />
 
-**Concepts**
+### Concepts
+
+**Independent Deployments**
+
+The possibility of independent deployments is the idea that we can make a change to a microservice, deploy it, and make that change available to our users without having to deploy other microservices.
+
+If you're going to retain only one idea from the microservice concept, it should be this: ensure you adopt the concept of independent deployments for your microservices. Get into the habit of deploying and releasing changes to a single microservice in the production environment, without having to make other deployments.
+
+For this, it is essential that microservices have low coupling.
+
+**Modeling based on a business domain**
 
