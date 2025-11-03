@@ -11,9 +11,9 @@
 
 ## What is microservice
 
-Microservices are services that can be started independently of others and are designed in a domain-oriented way.
+Microservices are services that can be launched independently and are modeled based on a business domain. A service encapsulates a functionality and makes it accessible to other services across networks.
 
-Microservices are a type of Service-Oriented Architecture. It is a technology-independent architecture and, from an external point of view, is treated as a black box.
+Microservices is a type of service-oriented architecture, with a clear definition of how service boundaries should be drawn. It is a technology-independent architecture.
 
 <img width="1054" height="755" alt="microservice_example_01" src="https://github.com/user-attachments/assets/b72b09c3-2996-4047-bdc2-5734cf6edca1" />
 
