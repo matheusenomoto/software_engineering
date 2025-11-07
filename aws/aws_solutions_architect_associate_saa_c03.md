@@ -35,6 +35,35 @@
 * [Exam Preparation](#exam-preparation)
 
 ## Getting Started with AWS
+
+**AWS Regions**
+* AWS has Regions all around the world
+* Names can be us-east-1, eu-west-3…
+* A region is a cluster of data centers
+* Most AWS services are region-scoped
+
+[global-infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)
+<img width="806" height="662" alt="global-infrastructure" src="https://github.com/user-attachments/assets/c5b78c56-e4ff-4bc3-8e8d-a425c841a0ee" />
+
+**How to choose an AWS Region?**
+
+* **Compliance** with data governance and legal requirements: data never leaves a region without your explicit permission
+* **Proximity** to customers: reduced latency
+* **Available services** within a Region: new services and new features aren’t available in every Region
+* **Pricing**: pricing varies region to region and is transparent in the service pricing page
+
+**AWS Availability Zones**
+
+* Each region has many availability zones (usually 3, min is 3, max is 6). Example:
+  * ap-southeast-2a
+  * ap-southeast-2b
+  * ap-southeast-2c
+* Each availability zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity
+* They’re separate from each other, so that they’re isolated from disasters
+* They’re connected with high bandwidth,ultra-low latency networking
+
+
+
 ## AWS Identity & Access Management (AWS IAM)
 ## Amazon EC2 – Basics
 ## Amazon EC2 – Associate
@@ -64,4 +93,5 @@
 ## Other Services
 ## White Papers & Architectures
 ## Exam Preparation
+
 
