@@ -1,4 +1,4 @@
-<img width="1042" height="268" alt="image" src="https://github.com/user-attachments/assets/e1eedae8-b681-4e13-bf90-6ff947fd694a" /># Data Structures and Algorithms
+# Data Structures and Algorithms
 
 ## Reference
 **Hands-On Data Structures and Algorithms with Python - Basant Agarwal**
