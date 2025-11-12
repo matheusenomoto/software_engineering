@@ -1,4 +1,4 @@
-# Data Structures and Algorithms
+<img width="1042" height="268" alt="image" src="https://github.com/user-attachments/assets/e1eedae8-b681-4e13-bf90-6ff947fd694a" /># Data Structures and Algorithms
 
 ## Reference
 **Hands-On Data Structures and Algorithms with Python - Basant Agarwal**
@@ -762,6 +762,226 @@ Doubly linked lists are employed by operating systems—for example, in the thre
 Circular linked lists are ideal for implementing round-robin scheduling mechanisms in operating systems. They can also be used to facilitate features such as software undo functionality and to maintain browser histories, enabling features like the back button.
 
 ### Stacks and Queues
+
+**Stacks**
+
+Stacks are a data structure that stores data in a specific order, similar to arrays and linked lists, but with additional restrictions.
+* Data elements can only be inserted at the top of the stack (push operation).
+* Data elements can only be deleted from the top of the stack (pop operation).
+* Only the last data element can be read from the top of stack (peek operation).
+
+A stack is a LIFO (last in, first out) structure
+
+<img width="836" height="361" alt="stacks" src="https://github.com/user-attachments/assets/d1388ab3-6073-446d-b25e-956b0d3fe374" />
+
+**Stack using linked lists**
+
+```python
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self, data=None):
+        self.top = None
+        self.size = 0
+    
+    def push(self, data):
+        # New node
+        node = Node(data)
+        if self.top:
+            node.next = self.top
+            self.top = node
+        else:
+            self.top = node
+        self.size += 1
+
+    def pop(self):
+        if self.top:
+            data = self.top.data
+            self.size -= 1
+            if self.top.next:
+                self.top = self.top.next
+            else:
+                self.top = None
+            return data
+        else:
+            print('Stack is empty')
+    
+    def peek(self):
+        if self.top:
+            return self.top.data
+        else:
+            print('Stack is empty')
+```
+
+<img width="879" height="195" alt="stack_using_linked_lists" src="https://github.com/user-attachments/assets/3c71dc16-473c-4bf9-b7dc-a9bd751d6c9f" />
+
+**Application**
+
+It's used in expression evaluation and conversion (e.g., infix to postfix), syntax parsing (e.g., matching parentheses or HTML tags), and managing function calls through the call stack. Stacks support undo/redo functionality in text editors, enable backtracking in algorithms like maze solving or Sudoku, and handle navigation history in browsers. They are also essential in depth-first search (DFS), memory management (stack frames for local variables), and are used in virtual machines like the JVM for executing bytecode.
+
+**Queues**
+
+A queue is a list of elements stored in sequence, with the following restrictions:
+
+* Elements can only be inserted at one end - the back (or tail) of the queue.
+* Elements can only be removed from the opposite end - the front (or head) of the queue.
+* Only the element at the front of the queue can be read (peek operation)."
+
+A queue is a FIFO (first in, first out) structure
+
+<img width="693" height="155" alt="queues" src="https://github.com/user-attachments/assets/15d708cc-8951-42f6-99a9-2153a7d2ed1a" />
+
+<img width="1042" height="268" alt="queues" src="https://github.com/user-attachments/assets/04f212d9-6cd5-48e6-b5c3-b50462c44a63" />
+
+**Queues using lists of python**
+
+```python
+class ListQueue:
+    def __init__(self):
+        self.items = []
+        self.front = self.rear = 0
+        self.size = 3 # maximum queue size
+
+    def enqueue(self, data):
+        if self.size == self.rear:
+            print('\n Queue is full')
+        else:
+            self.items.append(data)
+            self.rear += 1 
+    def dequeue(self):
+        if self.front == self.rear:
+            print('\n Queue is empty')
+        else:
+            data = self.items.pop(0)
+            self.rear -= 1
+            return data
+
+def test_list_queue():
+    q = ListQueue()
+
+    # Test enqueue until full
+    q.enqueue(10)
+    q.enqueue(20)
+    q.enqueue(30)
+    print("Queue after 3 enqueues:", q.items)  # Expected: [10, 20, 30]
+
+    # Try enqueueing when full
+    q.enqueue(40)  # Expected: "Queue is full"
+
+    # Test dequeue
+    print("Dequeued:", q.dequeue())  # Expected: 10
+    print("Queue after one dequeue:", q.items)  # Expected: [20, 30]
+
+    # Dequeue remaining elements
+    q.dequeue()
+    q.dequeue()
+
+    # Try dequeueing when empty
+    q.dequeue()  # Expected: "Queue is empty"
+
+test_list_queue()
+```
+
+```sh
+Queue after 3 enqueues: [10, 20, 30]
+
+ Queue is full
+Dequeued: 10
+Queue after one dequeue: [20, 30]
+
+ Queue is empty
+```
+
+**Queues using linked lists**
+
+```python
+class Node(object):
+    def __init__(self, data=None, next=None, prev=None):
+        self.data = data
+        self.next = next
+        self.prev = prev
+    
+
+class LinkedListQueue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.count = 0
+
+    def enqueue(self, data):
+        new_node = Node(data, None, None)
+        if self.head == None:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+        
+        self.count += 1
+ 
+    def dequeue(self):
+        if self.count == 0:
+            print('Queue is empty.')
+            return
+
+        if self.count == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+
+        self.count -= 1
+
+def test_linked_list_queue():
+    q = LinkedListQueue()
+
+    # Enqueue elements
+    q.enqueue(10)
+    q.enqueue(20)
+    q.enqueue(30)
+
+    # Traverse and print queue
+    current = q.head
+    result = []
+    while current:
+        result.append(current.data)
+        current = current.next
+    print("Queue after 3 enqueues:", result)  # Expected: [10, 20, 30]
+
+    # Dequeue 1 element
+    q.dequeue()
+    current = q.head
+    result = []
+    while current:
+        result.append(current.data)
+        current = current.next
+    print("Queue after 1 dequeue:", result)  # Expected: [20, 30]
+
+    # Dequeue 2 more to empty it
+    q.dequeue()
+    q.dequeue()
+
+    # Try dequeue on empty queue
+    q.dequeue()  # Expected: 'Queue is empty.'
+
+test_linked_list_queue()
+```
+
+```sh
+Queue after 3 enqueues: [10, 20, 30]
+Queue after 1 dequeue: [20, 30]
+Queue is empty.
+```
+
+**Application**
+
+It can be used to queue individual printouts arriving from each computer on a network to a printer. Operating systems can queue processes to be executed by the CPU. 
+
 
 ### Trees
 
