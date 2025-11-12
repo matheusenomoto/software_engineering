@@ -561,7 +561,205 @@ def clear(self):
 ```
 **doubly linked list**
 
+The only difference between the doubly linked list and the single linked list is that the doubly linked list also has a pointer pointing to the previous node.
 
+<img width="391" height="163" alt="doubly_linked" src="https://github.com/user-attachments/assets/74378b87-a2db-4431-80b7-51932cf9ef59" />
+
+```python
+class Node:
+    def __init__(self, data=None, next = None, prev = None):
+        self.data = data
+        self.next = next
+        self.prev = prev
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.count = 0
+```
+**append**
+
+```python
+    def append_at_start (self, data):
+        new_node = Node(data, None, None)
+        if self.head is None:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.count += 1
+
+    def append_at_start (self, data):
+        new_node = Node(data, None, None)
+        if self.head is None:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.count += 1
+
+    def append_at_a_location(self, data, position):
+        current = self.head
+        while current:
+            if current.data == position:
+                new_node = Node(data, current, current.prev)
+                if current.prev:
+                    current.prev.next = new_node
+                else:
+                    self.head = new_node
+                current.prev = new_node
+                self.count += 1
+                break  # evita múltiplas inserções
+            current = current.next
+```
+<img width="1267" height="364" alt="doubly_linked_append" src="https://github.com/user-attachments/assets/915c5949-5319-4ae8-bd6c-1e55075406ae" />
+
+**search**
+
+```python
+def iter(self):
+        current = self.head
+        while current:
+            val = current.data
+            current = current.next
+            yield val
+    
+    def contains(self, data):
+        for node_data in self.iter():
+            if data == node_data:
+                print(f'Data ({node_data}) item is present in the list')
+                return
+        print(f'Data ({data}) item is not present in the list')
+        return
+```
+
+**delete**
+
+```python
+def delete(self, data):
+        current = self.head
+        node_deleted = False
+        if current is None:
+            print("List is empty")
+        elif current.data == data:
+            # Data at the start
+            self.head.prev = None
+            node_deleted = True
+            self.head = current.next
+        elif self.tail.data == data:
+            # Data at the end
+            self.tail = self.tail.prev
+            self.tail.next = None
+            node_deleted = True
+        else:
+            while current:
+                # search at intermediate positions
+                if current.data == data:
+                    current.prev.next = current.next
+                    current.next.prev = current.prev
+                    node_deleted = True
+                current = current.next
+            if node_deleted == False:
+                print('Item not found')
+        
+        if node_deleted:
+            self.count -=1
+```
+
+**circular linked lists**
+
+A circular linked list is a variation of a regular linked list where the last node doesn't point to None - instead, it points back to the first node, forming a circle.
+
+**singly circular linked list**
+
+A circular linked list is a variation of a regular linked list where the last node doesn't point to None - instead, it points back to the first node, forming a circle.
+
+<img width="513" height="185" alt="singly_circular_linked_list" src="https://github.com/user-attachments/assets/849dc23b-adcc-44f7-866d-516c8c6a9e46" />
+
+```python
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class SinglyCircularLinkedList:
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.size = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.tail:
+            self.tail.next = node
+            self.tail = node
+            node.next = self.head
+        else:
+            self.head = node
+            self.tail = node
+            self.tail.next = self.head 
+        self.size +=1
+
+    
+    def iter(self):
+        if not self.head:
+            return
+        current = self.head
+        while True:
+            yield current.data
+            current = current.next
+            if current == self.head:
+                break
+    
+    def delete(self, data):
+        if not self.head:
+            return
+
+        current = self.head
+        prev = self.tail
+
+        while True:
+            if current.data == data:
+                if current == self.head:
+                    self.head = current.next
+                    self.tail.next = self.head
+                    if current == self.tail:
+                        # Only one node
+                        self.head = self.tail = None
+                elif current == self.tail:
+                    prev.next = self.head
+                    self.tail = prev
+                else:
+                    prev.next = current.next
+
+                self.size -= 1
+                return
+
+            prev = current
+            current = current.next
+
+            if current == self.head:
+                break  # We've looped once; data not found
+```
+
+**doubly circular linked list**
+
+Each node has next and prev pointers, and the first and last nodes are connected in both directions.
+
+<img width="414" height="212" alt="doubly_circular_linked_list" src="https://github.com/user-attachments/assets/6a7b513c-c346-4e9a-ab27-3893e59e6d34" />
+
+**Applications**
+
+Singly linked lists can be used to represent sparse matrices by storing only nonzero elements along with their indices. They are also useful for representing and manipulating polynomials, where each node stores a term (typically including a coefficient and exponent). Additionally, singly linked lists can serve as a foundation for dynamic memory management schemes, allowing memory to be allocated and deallocated during runtime.
+
+Doubly linked lists are employed by operating systems—for example, in the thread scheduler—to maintain a list of currently active processes. They are also frequently used to implement MRU (Most Recently Used) and LRU (Least Recently Used) caches within the operating system.
+
+Circular linked lists are ideal for implementing round-robin scheduling mechanisms in operating systems. They can also be used to facilitate features such as software undo functionality and to maintain browser histories, enabling features like the back button.
 
 ### Stacks and Queues
 
