@@ -1520,7 +1520,9 @@ class Tree:
             current = current.right_child
         
         return current.data
+```
 
+```python
 def bst_test():
     tree = Tree()
     r = tree.insert(5)
