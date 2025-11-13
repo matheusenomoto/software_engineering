@@ -20,11 +20,11 @@
 
 ### Data Types and Data Structures
 
-**Basic data types**
+#### **Basic data types**
 
 The most basic data types are numerical and boolean.
 
-**Numerical**
+#### **Numerical**
 
 Store numerical values. the whole values, floating point and complexes belong to this type of data.
 
@@ -32,14 +32,14 @@ Store numerical values. the whole values, floating point and complexes belong to
 - **float**: Considers a number that has a floating point value as a float type; It is specified with a point
 - **complex**: It is represented with the use of floating point values. It contains an orderly pair, a + Ib. Here, A and B represent real numbers and I represents the imaginary component.
 
-**Boolean**
+#### **Boolean**
 
 This type provides a true or false value and checks if any instruction is true or false.
 
 ```sh
 True != False
 ```
-**Sequence**
+#### **Sequence**
 
 They are used to store multiple values in the same variable in an organized and efficient way. There are four basic types of sequence: string, range, lists and tuplas.
 
@@ -60,7 +60,7 @@ list_1 = [7,'south', 9, 'west', 13, 'Europe']
 tuple_1 = (7,'south', 9, 'west', 13, 'Europe')
 ```
 
-**Complex data types**
+#### **Complex data types**
 - **dictionaries**: A python dictionary is one of the important types of data, which is similar to a list, in the sense that it is also a collection of objects. It stores the data in pairs {key, value}. O The key should be a type of unchanging data and hashable and i vakir oide be any arbitrary python object.
 ```python
 dict_1 = {
@@ -82,7 +82,7 @@ set_1 = {'algorithm', 'structure', 'data'}
 frozen_set_1 = frozenset(['algorithm', 'structure', 'data'])
 ```
 
-**Python collections module**
+#### **Python collections module**
 
 The collections module provides several types of containers, which are objects used to store different objects and provide a way for us to access them.
 
@@ -99,14 +99,14 @@ The collections module provides several types of containers, which are objects u
 
 ### Introduction to Algorithm Design
 
-**Introduction to Algorithms**
+#### **Introduction to Algorithms**
 
 An algorithm is a sequence of steps that must be followed to complete a specific task/question.
 
 <img width="411" height="127" alt="algorithm" src="https://github.com/user-attachments/assets/5da144ee-bcc1-4b1c-8804-711a4661cdfb" />
 
 
-**Analysis of the unfolding of an algorithm**
+#### **Analysis of the unfolding of an algorithm**
 
 Generally, the time performance of the algorithm is measured by the size of your input data, N, and the time and memory space used by it.
 
@@ -122,7 +122,7 @@ def linear_search(arr, key):
     return -1
 ```
 
-**Asymptotic notation**
+#### **Asymptotic notation**
 
 When analyzing the time complexity of an algorithm, the growth rate (order of growth) is very important when the input size is large. When the input size becomes large, we only consider the higher-order terms and ignore irrelevant terms.
 
@@ -144,11 +144,11 @@ $T(n) = \Omega(F(n))$
 
 ### Algorithm Design Techniques and Strategies
 
-**Algorithm Design Techniques**
+#### **Algorithm Design Techniques**
 
 It is a powerful tool for visualizing and clearly understanding precisely formulated real-world problems. Brute-force approaches test all possible solution combinations to solve a problem. This approach can provide useful solutions for limited input sizes, but becomes very inefficient as the input size increases. Design technique guidelines also help to easily develop new algorithms for complex problems. There are several algorithm design paradigms.
 
-**Recursion**
+#### **Recursion**
 
 Calls itself repeatedly to solve the problem until a specific condition is met. Each recursive call generates another recursive call.
 
@@ -159,7 +159,7 @@ Calls itself repeatedly to solve the problem until a specific condition is met. 
 
 <img width="616" height="340" alt="algorithm_recursive_case" src="https://github.com/user-attachments/assets/9fceb609-85ab-4a16-bfe4-43b726e7e93a" />
 
-**Divide and Conquer**
+#### **Divide and Conquer**
 
 The divide-and-conquer paradigm divides a problem into smaller subproblems and solves them; finally, it combines the results to obtain a globally optimal solution. In divide-and-conquer design, the problem is divided into two smaller subproblems, with each subproblem solved recursively.
 
@@ -181,7 +181,7 @@ The divide-and-conquer paradigm divides a problem into smaller subproblems and s
     * Stability: Stable
     * Use Case: Great for large datasets and linked lists.
 
-**Dynamic Programming**
+#### **Dynamic Programming**
 
 It's the most powerful design technique for solving optimization problems. These problems typically have many possible solutions. It's based on the intuition of the divide-and-conquer technique. Dynamic programming problems have two important characteristics.
 
@@ -190,7 +190,7 @@ It's the most powerful design technique for solving optimization problems. These
 * **overlapping subproblems**
     * When an algorithm needs to repeatedly solve the same subproblem, this happens because the problem has overlapping subproblems.
 
-**Greedy Algorithms**
+#### **Greedy Algorithms**
 
 They involve optimization and combinatorial problems. The goal is to obtain the optimal solution from many possible solutions at each stage. The goal is to obtain the local optimal solution, which may ultimately lead to the global optimal solution.
 
@@ -322,21 +322,21 @@ shortest_path_table = find_shortest_path(graph, table, 'A')
 
 ### Linked Lists
 
-**linked lists**
+#### **linked lists**
 
 It is a data structure in which data elements are stored in a linear order. They provide efficient storage in linear order through pointer-based structures. Pointers are used to store the memory addresses of data items.
 
-**arrays**
+#### **arrays**
 
 It is a data structure in which data elements are stored in a linear order. They provide efficient storage in linear order through pointer-based structures. Pointers are used to store the memory addresses of data items. An array is a collection of data items of the same type, while a linked list is a collection of the same data types stored sequentially and connected by pointers. In lists, data elements are stored in different locations in memory, while in arrays, the elements are stored in contiguous locations in memory. The term base address refers to the address of the location in memory where the first element is stored, and offset refers to an integer that indicates the offset between the first element and a specific element.
 
-**linked lists**
+#### **linked lists**
 
 <img width="559" height="146" alt="linked_list" src="https://github.com/user-attachments/assets/10ab1781-b78d-4433-be9f-7090ceee160e" />
 
 A node is an essential component of various data structures, such as linked lists. It is a data container and has one or more links that lead to other nodes, where a link is a pointer.
 
-**singly linked lists**
+#### **singly linked lists**
 
 <img width="711" height="189" alt="singly_linked_list" src="https://github.com/user-attachments/assets/09838cbb-f3c0-4e10-a137-90b9bcfd48aa" />
 
@@ -363,7 +363,7 @@ def iter(self):
 
 ```
 
-**append**
+##### **append**
 
 **head no tail**
 
@@ -392,7 +392,7 @@ class SinglyLinkedList:
             current.next = node
 ```
 
-**head & tail**
+##### **head & tail**
 
 ```python
 class Node:
@@ -421,7 +421,7 @@ class SinglyLinkedList:
 
 <img width="583" height="232" alt="linked_list_append" src="https://github.com/user-attachments/assets/6cf80368-7a0d-4824-89e3-ff201c55a9b9" />
 
-**intermediate positions**
+##### **intermediate positions**
 
 ```python
 class Node:
@@ -487,7 +487,7 @@ class SinglyLinkedList:
 
 <img width="955" height="271" alt="linked_list_intermediate_position" src="https://github.com/user-attachments/assets/34e218f0-1cdd-4da3-ad3d-3a53a4d38e76" />
 
-**search**
+##### **search**
 
 ```python
 def iter(self):
@@ -504,7 +504,7 @@ def iter(self):
         return False
 ```
 
-**size**
+##### **size**
 
 ```python
 def size(self):
@@ -516,7 +516,7 @@ def size(self):
         return count
 ```
 
-**delete**
+##### **delete**
 
 ```python
 def delete_first_node(self):
@@ -553,14 +553,14 @@ def delete(self, data):
 
 <img width="886" height="297" alt="linked_list_delete" src="https://github.com/user-attachments/assets/6605609f-5a7c-45ef-bc30-70de48ea6eae" />
 
-**clear**
+##### **clear**
 
 ```python
 def clear(self):
         self.tail = None
         self.head = None
 ```
-**doubly linked list**
+#### **doubly linked list**
 
 The only difference between the doubly linked list and the single linked list is that the doubly linked list also has a pointer pointing to the previous node.
 
@@ -579,7 +579,7 @@ class DoublyLinkedList:
         self.tail = None
         self.count = 0
 ```
-**append**
+##### **append**
 
 ```python
     def append_at_start (self, data):
@@ -620,7 +620,7 @@ class DoublyLinkedList:
 ```
 <img width="1267" height="364" alt="doubly_linked_append" src="https://github.com/user-attachments/assets/915c5949-5319-4ae8-bd6c-1e55075406ae" />
 
-**search**
+##### **search**
 
 ```python
 def iter(self):
@@ -639,7 +639,7 @@ def iter(self):
         return
 ```
 
-**delete**
+##### **delete**
 
 ```python
 def delete(self, data):
@@ -672,7 +672,7 @@ def delete(self, data):
             self.count -=1
 ```
 
-**circular linked lists**
+#### **circular linked lists**
 
 A circular linked list is a variation of a regular linked list where the last node doesn't point to None - instead, it points back to the first node, forming a circle.
 
@@ -748,7 +748,7 @@ class SinglyCircularLinkedList:
                 break  # We've looped once; data not found
 ```
 
-**doubly circular linked list**
+####**doubly circular linked list**
 
 Each node has next and prev pointers, and the first and last nodes are connected in both directions.
 
@@ -1575,6 +1575,18 @@ max: 9
 ```
 
 ### Heaps and Priority Queues
+
+A heap data structure is a tree-based structure in which each node in the tree has a specific relationship with other nodes, and they are stored in a predefined order.
+
+A priority queue is an important data structure, similar to queue and stack data structures, that stores data with a priority associated with it.
+
+#### heaps
+
+Heaps can be of two types, max heaps and min heaps. In a max heap, the value of each parent node must always be greater than or equal to that of all its children. In a min heap, the value of each parent node must always be less than or equal to that of all its children.
+
+<img width="654" height="325" alt="max_and_mean_heap" src="https://github.com/user-attachments/assets/47f2f8bb-3435-4da6-8dc3-530b1399d08f" />
+
+
 
 ### Hash Tables
 
