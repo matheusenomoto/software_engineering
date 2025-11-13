@@ -1545,8 +1545,32 @@ def bst_test():
 bst_test()
 ```
 
+```sh
+$ python3 bst.py
 
-
+tree
+        -> 9
+    -> 7
+-> 5
+        -> 3
+    -> 2
+        -> 1
+in-order test
+1
+2
+3
+5
+7
+9
+root node
+root:  5
+searching 9 ...
+Found: 9
+searching 13 ...
+Item not found
+min: 1
+max: 9
+```
 
 ### Heaps and Priority Queues
 
