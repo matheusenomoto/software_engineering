@@ -1152,7 +1152,7 @@ def level_order_traversal(root_node):
 A-B-C-D-E-F-G-H
 ```
 
-##### expression tree
+#### expression tree
 
 An expression tree is a binary tree used to represent and evaluate mathematical expressions. Each node in the tree corresponds to an element of the expression - either an operator (like +, *, /, -) or an operand (like numbers or variables).
 
@@ -1364,6 +1364,188 @@ bst_test()
 ```
 
 <img width="265" height="298" alt="binary_search_tree_02" src="https://github.com/user-attachments/assets/b29d04be-61af-4046-92c1-4294d463a707" />
+
+#### Exclusion of nodes
+
+There are three possible scenarios we'll need to handle during this process.
+
+* **No children**: If there are no leaves, we'll remove the node directly from its parent.
+* **Having one child**: In this case, we'll swap the value of this node with that of its child and delete it.
+* **Having two children**: In this case, we'll first find the successor or predecessor in the in-order scan, swap their values, and delete that node.
+
+<img width="198" height="371" alt="no_children" src="https://github.com/user-attachments/assets/171d8859-6448-4ee4-af7a-2aa3b82c8ae4" />
+<img width="187" height="375" alt="having_one_child" src="https://github.com/user-attachments/assets/5dacde90-2029-4d43-9e7f-cdde3fd1a5ef" />
+<img width="466" height="329" alt="having_two_children" src="https://github.com/user-attachments/assets/265e0aef-cc5d-4b4e-8d29-59c928b804c0" />
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.right_child = None
+        self.left_child = None
+    
+class Tree:
+    def __init__(self):
+        self.root_node = None
+
+    def insert(self, data):
+        node = Node(data)
+        if self.root_node is None:
+            self.root_node = node
+            return self.root_node
+        else:
+            current = self.root_node
+            while True:
+                if data < current.data:
+                    if current.left_child is None:
+                        current.left_child = node
+                        return self.root_node
+                    current = current.left_child
+                else:
+                    if current.right_child is None:
+                        current.right_child = node
+                        return self.root_node
+                    current = current.right_child
+    
+    def inorder(self, root_node):
+        current = root_node
+        if current is None:
+            return
+        self.inorder(current.left_child)
+        print(current.data)
+        self.inorder(current.right_child)
+ 
+    def search(self, data):
+        current = self.root_node
+        while True:
+            if current is None:
+                print('Item not found')
+                return None
+            elif current.data is data:
+                print('Found:', data)
+                return data
+            elif current.data > data:
+                current = current.left_child
+            else:
+                current = current.right_child
+    
+    def get_node_with_parent(self, data):
+        parent = None
+        current = self.root_node
+
+        while current:
+            if current.data == data:
+                return (parent, current)
+            elif current.data > data:
+                parent = current
+                current = current.left_child
+            else:
+                parent = current
+                current = current.right_child
+
+        return (parent, None)
+
+
+    def remove(self, data):
+        parent, node = self.get_node_with_parent(data)
+
+        if node is None:
+            return False
+
+        if node.left_child and node.right_child:
+            children_count = 2
+        elif node.left_child or node.right_child:
+            children_count = 1
+        else:
+            children_count = 0
+
+        if children_count == 0:
+            if parent:
+                if parent.left_child == node:
+                    parent.left_child = None
+                else:
+                    parent.right_child = None
+            else:
+                self.root_node = None
+
+        elif children_count == 1:
+            child = node.left_child if node.left_child else node.right_child
+            if parent:
+                if parent.left_child == node:
+                    parent.left_child = child
+                else:
+                    parent.right_child = child
+            else:
+                self.root_node = child
+
+        else:
+            successor_parent = node
+            successor = node.right_child
+            while successor.left_child:
+                successor_parent = successor
+                successor = successor.left_child
+
+            node.data = successor.data
+
+            if successor_parent.left_child == successor:
+                successor_parent.left_child = successor.right_child
+            else:
+                successor_parent.right_child = successor.right_child
+
+        return True
+
+
+    def print_tree(self, node=None, level=0):
+        if node is None:
+            node = self.root_node
+
+        if node.right_child:
+            self.print_tree(node.right_child, level + 1)
+
+        print('    ' * level + f'-> {node.data}')
+
+        if node.left_child:
+            self.print_tree(node.left_child, level + 1)
+    
+    def find_min(self):
+        current = self.root_node
+        while current.left_child:
+            current = current.left_child
+        
+        return current.data
+    
+    def find_max(self):
+        current = self.root_node
+        while current.right_child:
+            current = current.right_child
+        
+        return current.data
+
+def bst_test():
+    tree = Tree()
+    r = tree.insert(5)
+    r = tree.insert(2)
+    r = tree.insert(3)
+    r = tree.insert(7)
+    r = tree.insert(9)
+    r = tree.insert(1)
+    print('tree')
+    tree.print_tree()
+    print('in-order test')
+    tree.inorder(r)
+    print('root node')
+    print('root: ', tree.root_node.data)
+    print('searching 9 ...')
+    tree.search(9)
+    print('searching 13 ...')
+    tree.search(13)
+    print(f'min: {tree.find_min()}')
+    print(f'max: {tree.find_max()}')
+
+bst_test()
+```
+
+
 
 
 ### Heaps and Priority Queues
