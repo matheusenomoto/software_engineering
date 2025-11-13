@@ -103,7 +103,8 @@ The collections module provides several types of containers, which are objects u
 
 An algorithm is a sequence of steps that must be followed to complete a specific task/question.
 
-<img width="411" height="127" alt="algorithm" src="../img/algorithm.png" />
+<img width="411" height="127" alt="algorithm" src="https://github.com/user-attachments/assets/5da144ee-bcc1-4b1c-8804-711a4661cdfb" />
+
 
 **Analysis of the unfolding of an algorithm**
 
