@@ -986,6 +986,386 @@ It can be used to queue individual printouts arriving from each computer on a ne
 
 ### Trees
 
+A tree is a way to organize data in a hierarchical structure. It starts from one top node (point) and branches out.
+
+<img width="698" height="454" alt="trees" src="https://github.com/user-attachments/assets/93a8418f-6781-4d01-80f3-002f1e36f3c5" />
+
+#### Terminologies
+
+* **node**: A node is a single point in the tree that holds data. Every item in the tree is a node.
+* **root node**: The root node is the very first or top node in the tree. Everything else comes from it.
+* **subtree**: A subtree is any smaller part of the tree that looks like its own tree, starting from a node.
+* **simblings**: Siblings are nodes that share the same parent node.
+* **leaf node**: A leaf node is a node with no children - it's at the end of a branch.
+* **edge**: An edge is a connection between two nodes (like a line between parent and child).
+* **parent**: A parent node is one that has one or more children.
+* **child**: A child node is one that comes from another node (its parent).
+* **level**: The level of a node shows how far it is from the root:
+    * Root is at level 0
+    * Its children are at level 1
+    * And so on...
+* **height**: The height of a tree is the number of levels from the root down to the deepest leaf node.
+* **depth**: The depth of a node is how far it is from the root (how many edges you go down to reach it).
+
+#### binary tree
+
+A binary tree is a special kind of tree where each node has at most two children. These children are often called:
+
+* Left child
+* Right child
+
+<img width="587" height="187" alt="binary_tree" src="https://github.com/user-attachments/assets/542697a0-3558-4e59-8ed5-db0151660663" />
+
+#### full binary tree
+
+Every node has either 0 or 2 children. No node has only 1 child.
+
+<img width="273" height="275" alt="full_binary_tree" src="https://github.com/user-attachments/assets/16161f38-10b4-4c8f-91a2-55ab9ed6b5d7" />
+
+#### perfect binary tree
+
+All internal nodes have 2 children and all leaves are at the same level.
+
+#### complete binary tree
+
+All levels are fully filled except possibly the last. Last level is filled left to right.
+
+<img width="307" height="279" alt="complete_binary_tree" src="https://github.com/user-attachments/assets/5c5b56f4-4f76-4d31-891b-26ba2f2b14e1" />
+
+#### balanced binary tree
+
+The height difference between left and right subtrees of any node is at most 1. Keeps operations fast (like search).
+
+<img width="243" height="200" alt="balanced_binary_tree" src="https://github.com/user-attachments/assets/d3061789-9b9b-4365-a6ec-c8c9070d79a8" />
+
+#### unbalanced binary tree
+
+One side is much deeper than the other. The tree becomes “tall and skinny” → slower operations (like a linked list).
+
+<img width="243" height="272" alt="unbalanced_binary_tree" src="https://github.com/user-attachments/assets/b9a1615e-dd6b-48ad-bc02-b7c40b37cec3" />
+
+#### Rules
+
+| Type |  Rule |
+|:---:|:---:|
+| Full | 0 or 2 children only |
+| Perfect | Full and all leaves on same level |
+| Complete | All levels full except maybe last (filled left to right) |
+| Balanced | Heights of subtrees differ by no more than 1 |
+| Unbalanced | One or more subtrees are much taller than others |
+
+#### traversals
+
+There are several ways to process and traverse the tree according to the sequence of visiting the root node, the left subtree or the right subtree. There are two main approaches. In the first, we start at a node, traverse each available child node, and continue traversing the next sibling. There are three possible variations of this method: in-order, pre-order, and post-order. Another approach to traversing the tree is to start at the root node, visit all the nodes at each level, and process the nodes level by level.
+
+<img width="320" height="269" alt="traversals" src="https://github.com/user-attachments/assets/a743e448-3a7c-4314-b46b-56aab7d95098" />
+
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.right_child = None
+        self.left_child = None
+
+A = Node('A')
+B = Node('B')
+C = Node('C')
+D = Node('D')
+E = Node('E')
+F = Node('F')
+G = Node('G')
+H = Node('H')
+
+A.left_child = B
+A.right_child = C
+
+B.left_child = D
+B.right_child = E
+
+D.left_child = G
+D.right_child = H
+
+C.left_child = F
+```
+
+##### in-order
+
+We start by traversing the left subtree recursively, and once the left subtree is visited, the root node is visited, and finally the right subtree is visited recursively.
+
+<img width="555" height="291" alt="in-order" src="https://github.com/user-attachments/assets/37b4d086-1969-49fb-bc0b-5429910f5d88" />
+
+```python
+def inorder(root_node):
+    current = root_node
+    if current is None:
+        return
+    inorder(current.left_child)
+    print(current.data)
+    inorder(current.right_child)
+```
+
+```sh
+G-D-H-B-E-A-F-C
+```
+
+##### pre-order
+
+<img width="554" height="296" alt="pre-order" src="https://github.com/user-attachments/assets/fcc285c7-f6d7-4657-8f17-04625ce759cb" />
+
+```python
+def preorder(root_node):
+    current = root_node
+    if current is None:
+        return
+    print(current.data)
+    preorder(current.left_child)
+    preorder(current.right_child)
+```
+
+```sh
+G-H-D-E-B-F-C-A
+```
+
+##### level-order
+
+We start by visiting the root of the tree before visiting each node at the next level. We then move on to the next level of the tree, and so on.
+
+<img width="598" height="315" alt="level-order" src="https://github.com/user-attachments/assets/d0d1762a-2af9-4dad-b41b-41f9cee7d937" />
+
+
+```python
+def level_order_traversal(root_node):
+    list_of_nodes = []
+    traversal_queue = deque([root_node])
+    while len(traversal_queue) > 0:
+        node = traversal_queue.popleft()
+        list_of_nodes.append(node.data)
+        if node.left_child:
+            traversal_queue.append(node.left_child)
+            if node.right_child:
+                traversal_queue.append(node.right_child)
+    return list_of_nodes
+```
+
+```sh
+A-B-C-D-E-F-G-H
+```
+
+##### expression tree
+
+An expression tree is a binary tree used to represent and evaluate mathematical expressions. Each node in the tree corresponds to an element of the expression - either an operator (like +, *, /, -) or an operand (like numbers or variables).
+
+Structure:
+
+* Leaf nodes: These are the operands (constants or variables).
+* Internal nodes: These are the operators (e.g., +, -, *, /).
+
+**infix**: Traversing an expression tree in-order produces infix notation.
+
+<img width="364" height="130" alt="infix" src="https://github.com/user-attachments/assets/8a606c9f-6044-4fd0-9b6d-eec439055539" />
+  
+**prefix**: Traversing an expression tree pre-order produces prefix notation. Prefix notation is often called Polish notation. In this notation, the operator comes before its operands. For example, the arithmetic expression that adds two numbers would be + 3 4.
+
+<img width="859" height="207" alt="prefix" src="https://github.com/user-attachments/assets/c80cbfe5-bafc-4eab-895c-bb7d969d8332" />
+
+**postfix**: Traversing an expression tree post-order produces postfix notation. Postfix notation, or RPN (reverse Polish notation), inserts the operator after its operands, as in 3 4 +.
+
+<img width="466" height="201" alt="postfix" src="https://github.com/user-attachments/assets/1a9216b3-04b8-457e-a1d9-d700bf50d5d5" />
+
+##### Parsing a reverse Polish expression
+
+To create an expression tree from postfix notation, a stack is used. We process one symbol at a time. If the symbol is an operand, its reference is pushed onto the stack. If the symbol is an operator, we pop two operands from the stack and form a new subtree where the operator is the root and the operands are its children. This new subtree is then pushed back onto the stack.
+
+<img width="514" height="196" alt="parsing_a_reverse_polish_expression_01" src="https://github.com/user-attachments/assets/86dcd6ee-45a5-4b02-91b4-cf502b8662da" />
+
+First, we push operands 4 and 5 onto the stack. When the next symbol, +, is read, it becomes the root of a subtree. We remove two references from the stack: the first value removed will be the right child of the + operator, and the second value will be the left child. We then push this subtree back onto the stack.
+
+<img width="536" height="275" alt="parsing_a_reverse_polish_expression_02" src="https://github.com/user-attachments/assets/bfeae0e8-04db-4e85-ba68-cc87ed629c4d" />
+
+<img width="612" height="292" alt="parsing_a_reverse_polish_expression_03" src="https://github.com/user-attachments/assets/6e7d4b6d-51bc-4092-a068-4947609edb13" />
+
+```python
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.right = None
+        self.left = None
+
+class Stack:
+    def __init__(self):
+        self.elements = []
+    
+    def push(self, item):
+        self.elements.append(item)
+    
+    def pop(self):
+        return self.elements.pop()
+
+def calc(node):
+    if node.data == "+":
+        return calc(node.left) + calc(node.right)
+    elif node.data == "-":
+        return calc(node.left) - calc(node.right)
+    elif node.data == "*":
+        return calc(node.left) * calc(node.right)
+    elif node.data == "/":
+        return calc(node.left) / calc(node.right)
+    else:
+        return node.data
+
+def test_build_expression_tree_v1():
+    expression = '4 5 + 5 3 - *'.split()
+    stack = Stack()
+
+    for term in expression:
+        if term in '+-*/':
+            node = TreeNode(term)
+            node.right = stack.pop()
+            node.left = stack.pop()
+        else:
+            node = TreeNode(int(term))
+        
+        stack.push(node)
+    root = stack.pop()
+    result = calc(root)
+    print(result)
+
+test_build_expression_tree_v1()
+```
+
+Expression trees are important because they represent mathematical or logical expressions in a structured, hierarchical way, enabling various powerful operations that are crucial in computing, especially in:
+
+1. Compilers and Interpreters
+* Why? Compilers use expression trees to parse and evaluate code
+* Example: a + b * c becomes a tree where * is evaluated before + due to tree structure (not just operator precedence rules).
+* This structure helps in code generation, optimization, and type checking.
+
+2. Expression Evaluation
+Trees can be evaluated recursively, mimicking human-like evaluation. You can easily:
+
+* Evaluate it left-to-right or post-order (for postfix)
+* Convert between infix, prefix, and postfix forms
+* Handle complex, nested expressions naturally
+
+3. Algebraic Simplification and Optimization
+
+Expression trees let you apply transformations:
+
+* Simplify expressions (a * 1 → a)
+* Apply constant folding (3 + 4 → 7)
+* Rearrange for performance or accuracy
+
+4. Symbolic Computation
+
+* Tools like Mathematica or SymPy use expression trees to manipulate math symbolically (not numerically).
+* Example: differentiate, integrate, expand expressions.
+
+5. Reverse Conversion and Traversals
+
+Convert postfix ↔ infix ↔ prefix using tree traversals:
+
+* In-order → infix
+* Pre-order → prefix
+* Post-order → postfix
+
+6. Foundation for Abstract Syntax Trees (ASTs)
+
+Expression trees are a subset of ASTs, which are used broadly in:
+
+* Code analysis
+* Linters
+* Formatters
+* Static analyzers
+
+In Short:
+
+Expression trees bridge the gap between raw symbols and structured logic, making them critical for evaluation, optimization, compilation, and symbolic manipulation.
+
+##### binary search tree BST
+
+Binary search tree is a special type of binary tree. It is one of the most important data structure and most common used in computer science applications. It allows fast operations to search, insert, and delete.
+
+A binary tree is called a binary search tree when the value of any node in the tree is greater than the values of all the nodes in its left subtree and less than or equal to all the nodes in its right subtree.
+
+<img width="246" height="196" alt="binary_search_tree_01" src="https://github.com/user-attachments/assets/a9af2870-78c0-46d9-bbc3-fc9fb26e17ae" />
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.right_child = None
+        self.left_child = None
+    
+class Tree:
+    def __init__(self):
+        self.root_node = None
+
+    def insert(self, data):
+        node = Node(data)
+        if self.root_node is None:
+            self.root_node = node
+            return self.root_node
+        else:
+            current = self.root_node
+            parent = None
+            while True:
+                parent = current
+                if node.data < parent.data:
+                    current = current.left_child
+                    if current is None:
+                        parent.left_child = node
+                        return self.root_node
+                    current = current.right_child
+                    if current is None:
+                        parent.right_child = node
+                        return self.root_node
+    
+    def inorder(self, root_node):
+        current = root_node
+        if current is None:
+            return
+        self.inorder(current.left_child)
+        print(current.data)
+        self.inorder(current.right_child)
+    
+    def search(self, data):
+        current = self.root_node
+        while True:
+            if current is None:
+                print('Item not found')
+                return None
+            elif current.data is data:
+                print('Found:', data)
+                return data
+            elif current.data > data:
+                current = current.left_child
+            else:
+                current = current.right_child
+
+def bst_test():
+    tree = Tree()
+    r = tree.insert(5)
+    r = tree.insert(2)
+    r = tree.insert(3)
+    r = tree.insert(7)
+    r = tree.insert(9)
+    r = tree.insert(1)
+    print('in-order test')
+    tree.inorder(r)
+    print('root node')
+    print('root: ', tree.root_node.data)
+    print('searching 9 ...')
+    tree.search(9)
+    print('searching 13 ...')
+    tree.search(13)
+
+bst_test()
+```
+
+<img width="265" height="298" alt="binary_search_tree_02" src="https://github.com/user-attachments/assets/b29d04be-61af-4046-92c1-4294d463a707" />
+
+
 ### Heaps and Priority Queues
 
 ### Hash Tables
