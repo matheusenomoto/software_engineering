@@ -363,7 +363,7 @@ def iter(self):
 
 ```
 
-##### **append**
+#### **append**
 
 **head no tail**
 
@@ -392,7 +392,7 @@ class SinglyLinkedList:
             current.next = node
 ```
 
-##### **head & tail**
+#### **head & tail**
 
 ```python
 class Node:
@@ -421,7 +421,7 @@ class SinglyLinkedList:
 
 <img width="583" height="232" alt="linked_list_append" src="https://github.com/user-attachments/assets/6cf80368-7a0d-4824-89e3-ff201c55a9b9" />
 
-##### **intermediate positions**
+#### **intermediate positions**
 
 ```python
 class Node:
@@ -487,7 +487,7 @@ class SinglyLinkedList:
 
 <img width="955" height="271" alt="linked_list_intermediate_position" src="https://github.com/user-attachments/assets/34e218f0-1cdd-4da3-ad3d-3a53a4d38e76" />
 
-##### **search**
+#### **search**
 
 ```python
 def iter(self):
@@ -504,7 +504,7 @@ def iter(self):
         return False
 ```
 
-##### **size**
+#### **size**
 
 ```python
 def size(self):
@@ -516,7 +516,7 @@ def size(self):
         return count
 ```
 
-##### **delete**
+#### **delete**
 
 ```python
 def delete_first_node(self):
@@ -553,7 +553,7 @@ def delete(self, data):
 
 <img width="886" height="297" alt="linked_list_delete" src="https://github.com/user-attachments/assets/6605609f-5a7c-45ef-bc30-70de48ea6eae" />
 
-##### **clear**
+#### **clear**
 
 ```python
 def clear(self):
@@ -579,7 +579,7 @@ class DoublyLinkedList:
         self.tail = None
         self.count = 0
 ```
-##### **append**
+#### **append**
 
 ```python
     def append_at_start (self, data):
@@ -620,7 +620,7 @@ class DoublyLinkedList:
 ```
 <img width="1267" height="364" alt="doubly_linked_append" src="https://github.com/user-attachments/assets/915c5949-5319-4ae8-bd6c-1e55075406ae" />
 
-##### **search**
+#### **search**
 
 ```python
 def iter(self):
@@ -639,7 +639,7 @@ def iter(self):
         return
 ```
 
-##### **delete**
+#### **delete**
 
 ```python
 def delete(self, data):
@@ -775,7 +775,7 @@ A stack is a LIFO (last in, first out) structure
 
 <img width="836" height="361" alt="stacks" src="https://github.com/user-attachments/assets/d1388ab3-6073-446d-b25e-956b0d3fe374" />
 
-##### **Stack using linked lists**
+#### **Stack using linked lists**
 
 ```python
 class Node:
@@ -819,7 +819,7 @@ class Stack:
 
 <img width="879" height="195" alt="stack_using_linked_lists" src="https://github.com/user-attachments/assets/3c71dc16-473c-4bf9-b7dc-a9bd751d6c9f" />
 
-##### **Application**
+#### **Application**
 
 It's used in expression evaluation and conversion (e.g., infix to postfix), syntax parsing (e.g., matching parentheses or HTML tags), and managing function calls through the call stack. Stacks support undo/redo functionality in text editors, enable backtracking in algorithms like maze solving or Sudoku, and handle navigation history in browsers. They are also essential in depth-first search (DFS), memory management (stack frames for local variables), and are used in virtual machines like the JVM for executing bytecode.
 
@@ -837,7 +837,7 @@ A queue is a FIFO (first in, first out) structure
 
 <img width="1042" height="268" alt="queues" src="https://github.com/user-attachments/assets/04f212d9-6cd5-48e6-b5c3-b50462c44a63" />
 
-##### **Queues using lists of python**
+#### **Queues using lists of python**
 
 ```python
 class ListQueue:
@@ -896,7 +896,7 @@ Queue after one dequeue: [20, 30]
  Queue is empty
 ```
 
-##### **Queues using linked lists**
+#### **Queues using linked lists**
 
 ```python
 class Node(object):
@@ -979,7 +979,7 @@ Queue after 1 dequeue: [20, 30]
 Queue is empty.
 ```
 
-##### **Application**
+#### **Application**
 
 It can be used to queue individual printouts arriving from each computer on a network to a printer. Operating systems can queue processes to be executed by the CPU. 
 
@@ -1089,7 +1089,7 @@ D.right_child = H
 C.left_child = F
 ```
 
-##### in-order
+#### in-order
 
 We start by traversing the left subtree recursively, and once the left subtree is visited, the root node is visited, and finally the right subtree is visited recursively.
 
@@ -1109,7 +1109,7 @@ def inorder(root_node):
 G-D-H-B-E-A-F-C
 ```
 
-##### pre-order
+#### pre-order
 
 <img width="554" height="296" alt="pre-order" src="https://github.com/user-attachments/assets/fcc285c7-f6d7-4657-8f17-04625ce759cb" />
 
@@ -1127,7 +1127,7 @@ def preorder(root_node):
 G-H-D-E-B-F-C-A
 ```
 
-##### level-order
+#### level-order
 
 We start by visiting the root of the tree before visiting each node at the next level. We then move on to the next level of the tree, and so on.
 
@@ -1173,7 +1173,7 @@ Structure:
 
 <img width="466" height="201" alt="postfix" src="https://github.com/user-attachments/assets/1a9216b3-04b8-457e-a1d9-d700bf50d5d5" />
 
-##### Parsing a reverse Polish expression
+#### Parsing a reverse Polish expression
 
 To create an expression tree from postfix notation, a stack is used. We process one symbol at a time. If the symbol is an operand, its reference is pushed onto the stack. If the symbol is an operator, we pop two operands from the stack and form a new subtree where the operator is the root and the operands are its children. This new subtree is then pushed back onto the stack.
 
@@ -1282,7 +1282,7 @@ In Short:
 
 Expression trees bridge the gap between raw symbols and structured logic, making them critical for evaluation, optimization, compilation, and symbolic manipulation.
 
-##### binary search tree BST
+#### binary search tree BST
 
 Binary search tree is a special type of binary tree. It is one of the most important data structure and most common used in computer science applications. It allows fast operations to search, insert, and delete.
 
@@ -1586,14 +1586,14 @@ Heaps can be of two types, max heaps and min heaps. In a max heap, the value of 
 
 <img width="654" height="325" alt="max_and_mean_heap" src="https://github.com/user-attachments/assets/47f2f8bb-3435-4da6-8dc3-530b1399d08f" />
 
-##### insert
+#### insert
 
 Inserting an item into a min-heap occurs in two steps. First, we add the new element to the end of the list and increase the heap size by one. Second, after each insertion operation, we must fit the new element somewhere up the tree to organize all the nodes in a way that meets the heap property.
 
 
 <img width="1085" height="218" alt="heap_insert" src="https://github.com/user-attachments/assets/17fe95fd-c062-45ab-aefa-bf300f6b9088" />
 
-##### delete
+#### delete
 
 When we delete the root node, we'll need a new root node. We'll then take the last item in the list and make it the new root. Since the last node selected may not be the lowest valued element, we will need to rearrange the heap nodes. We'll rearrange the nodes from the root node to the last node. This process is called heapfication. Since we'll be moving from top to bottom in the heap, the process
 is called percolate down.
@@ -1741,7 +1741,7 @@ It is a data structure that implements an associative array in which data is sto
 
 <img width="702" height="248" alt="hash_table_01" src="https://github.com/user-attachments/assets/ae172cb9-f572-491e-91f2-69a96c00cee7" />
 
-##### intro
+#### intro
 
 It is a data structure that implements an associative array in which data is stored by mapping keys to values as key-value pairs. When we look up an element in the hash table, hashing the key provides the index of the corresponding record in the table.
 
@@ -1822,17 +1822,17 @@ There are 3 types of probing:
 * Quadratic Probing
 * Double Hashing
 
-##### Linear Probing
+#### Linear Probing
 
 Visiting each slot is a linear way to resolve collisions, in which we linearly search for the next available slot by adding 1 to the previous hash value where the collision occurred. This is known as linear probing. We can resolve the conflict by adding 1 to the sum of the ordinal values of each character in the string key, which will be used to calculate the final hash value by its modulo the size of the hash table.
 
 <img width="432" height="229" alt="linear_probing" src="https://github.com/user-attachments/assets/085f340b-cb40-47db-bf58-21d8005c1d6f" />
 
-##### storing elements in a hash table
+#### storing elements in a hash table
 
 The put method stores a key–value pair in the hash table by first creating a HashItem and finding its position using the _hash function. If that position is already taken by a different key, it uses linear probing (checking the next slots in order) until it finds either an empty slot or the same key to update. If it finds an empty slot, it increases the count and saves the item there, then checks if the table needs to grow.
 
-##### augment a hash table
+#### augment a hash table
 
 To increase the table size, we need to compare the table size and the table count. Typically, the hash table load factor is used to expand the table size; it is defined by the number of used slots (n) divided by the total number (k) of slots in the table.
 
@@ -1977,13 +1977,13 @@ Slots after insertion (before growth):
 19: None
 ```
 
-##### quadratic probing
+#### quadratic probing
 
 Also an open addressing scheme for resolving collisions in hash tables. It resolves the collision by calculating the key's hash value and adding successive values of a quadratic polynomial. The new hash is calculated iteratively until an empty slot is found. If a collision occurs, the next free slots are checked at locations h + 1², h + 2², h + 3², and so on.
 
 <img width="599" height="446" alt="quadratic_probing" src="https://github.com/user-attachments/assets/c6631778-1e07-4074-881c-7f8c4baa8909" />
 
-##### double hashing
+#### double hashing
 
 The double hashing collision resolution technique uses two hash functions. First, the primary function is used to calculate the index position in the hash table, and whenever a collision occurs, we use another hash function to find the next free slot and store the data by incrementing the hash value.
 
@@ -1995,14 +1995,14 @@ It is important that the second hash function is fast, easy to compute, should n
 
 <img width="728" height="481" alt="double_hashing" src="https://github.com/user-attachments/assets/c21f5af1-98a3-4a9c-8547-c6b85a352fce" />
 
-##### separate chaining
+#### separate chaining
 
 In chaining, hash table slots are initialized with empty lists. When a data element is inserted, it is appended to the list that corresponds to its hash value.
 
 <img width="975" height="219" alt="separate_chaining" src="https://github.com/user-attachments/assets/90f1169f-a209-4679-8639-2d15ce86ebcc" />
 
 
-##### symbol table 
+#### symbol table 
 
 They are used by compilers and interpreters to record the symbols and different entities, such as objects, classes, variables and function names, that have been declared in a program.
 
