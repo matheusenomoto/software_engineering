@@ -2451,6 +2451,430 @@ print(exponential_search(ordered_list, 125))
 
 ### Sorting
 
+Sorting means rearranging data in ascending or descending order. Sorting is one of the most important algorithms in computer science and is widely used in database algorithms.
+
+Examples:
+
+* Bubble sort
+* Insertion sort
+* Selection sort
+* Quicksort
+* Timsort
+
+#### bubble sort
+
+Given an unordered list, we compare the adjacent elements of the list, and after each comparison, they are inserted in the correct order according to their values.
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    print("Initial array:", arr)
+    for i in range(n):
+        swap = False
+        print(f"Pass {i + 1}:")
+        for j in range(0, n - 1 - i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swap = True
+                print(f"  Swapped {arr[j + 1]} and {arr[j]} --> {arr}")
+            else:
+                print(f"  No swap for {arr[j]} and {arr[j + 1]}")
+        if not swap:
+            print("  No swaps in this pass, array is sorted.")
+            break
+    print("Sorted array:", arr)
+
+bs_arr = [6, 4, 9, 5, 7]
+bubble_sort(bs_arr)
+```
+
+<img width="227" height="367" alt="bubble_sort" src="https://github.com/user-attachments/assets/7a8882d1-da6e-4c9d-9249-85b87744dbd3" />
+
+#### insertion sort
+
+The idea behind insertion sort is to maintain two sublists (a sublist is a portion of the original larger list), one sorted and the other unsorted, in which elements are added one by one from the unsorted sublist to the sorted sublist. Therefore, elements are removed from the unsorted sublist and inserted into the sorted sublist at the correct position, so that the sorted sublist remains sorted.
+
+```python
+def insertion_sort(arr):
+    # Traverse from the second element (first element is already "sorted")
+    for i in range(1, len(arr)):
+        key = arr[i]          # Element to insert into the sorted sublist
+        j = i - 1
+
+        # Move elements of arr[0..i-1], that are greater than key,
+        # one position ahead to make space for key
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key  # Insert key into its correct position
+    return arr
+```
+
+#### selection sort
+
+The idea behind insertion sort is to maintain two sublists (a sublist is a portion of the original larger list), one sorted and the other unsorted, in which elements are added one by one from the unsorted sublist to the sorted sublist. Therefore, elements are removed from the unsorted sublist and inserted into the sorted sublist at the correct position, so that the sorted sublist remains sorted.
+
+```python
+def selection_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        # Assume the first unsorted element is the smallest
+        min_index = i
+
+        # Find the index of the smallest element in the unsorted part
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+
+        # Swap the found minimum with the first unsorted element
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+
+    return arr
+
+
+# Example usage
+nums = [64, 25, 12, 22, 11]
+print("Before:", nums)
+print("After :", selection_sort(nums))
+# Expected: [11, 12, 22, 25, 64]
+```
+
+#### quicksort
+
+Quicksort is an algorithm based on the divide and conquer class of algorithms.
+
+
+Choose a pivot element from the list (commonly the last element, first element, or median).
+Partition the list so that:
+* Elements smaller than pivot go to the left.
+* Elements larger than pivot go to the right.
+* Recursively apply quicksort on the left and right sublists.
+* Combine results -> sorted array.
+
+```python
+def quicksort(arr):
+    # Base case: arrays with 0 or 1 element are already sorted
+    if len(arr) <= 1:
+        return arr
+
+    # Choose a pivot (here, last element)
+    pivot = arr[-1]
+
+    # Partition the array into three parts
+    left = [x for x in arr[:-1] if x <= pivot]   # Elements <= pivot
+    right = [x for x in arr[:-1] if x > pivot]   # Elements > pivot
+
+    # Recursive step: sort left and right, then combine
+    return quicksort(left) + [pivot] + quicksort(right)
+
+
+# Example usage
+nums = [10, 7, 8, 9, 1, 5]
+print("Before:", nums)
+print("After :", quicksort(nums))
+```
+
+#### Timsort
+
+Timsort is a hybrid stable sorting algorithm, invented by Tim Peters in 2002. It combines the best parts of Merge Sort and Insertion Sort.
+
+Divide into runs - The list is divided into small chunks (called runs):
+
+* A run is either monotonically increasing or decreasing.
+* If decreasing, it’s reversed to make it increasing.
+
+Sort each run with insertion sort → Since insertion sort is efficient on small, nearly-sorted data.
+
+Merge runs using merge sort → Like merge sort, repeatedly merge runs to form bigger sorted runs.
+
+```python
+def insertion_sort(arr, left, right):
+    for i in range(left + 1, right + 1):
+        key = arr[i]
+        j = i - 1
+        while j >= left and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+
+# Merge function (like in merge sort)
+def merge(arr, l, m, r):
+    left = arr[l:m+1]
+    right = arr[m+1:r+1]
+
+    i = j = 0
+    k = l
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            arr[k] = left[i]
+            i += 1
+        else:
+            arr[k] = right[j]
+            j += 1
+        k += 1
+
+    # Copy remaining elements
+    while i < len(left):
+        arr[k] = left[i]
+        i += 1
+        k += 1
+
+    while j < len(right):
+        arr[k] = right[j]
+        j += 1
+        k += 1
+
+
+def timsort(arr):
+    n = len(arr)
+    RUN = 32   # typical run size used in Timsort
+
+    # Sort small runs with insertion sort
+    for start in range(0, n, RUN):
+        end = min(start + RUN - 1, n - 1)
+        insertion_sort(arr, start, end)
+
+    # Merge runs like merge sort
+    size = RUN
+    while size < n:
+        for left in range(0, n, 2*size):
+            mid = min(n - 1, left + size - 1)
+            right = min((left + 2*size - 1), (n - 1))
+
+            if mid < right:
+                merge(arr, left, mid, right)
+
+        size *= 2
+
+    return arr
+
+
+# Example usage
+nums = [5, 21, 7, 23, 19, 12, 3, 1, 9, 8, 15, 4]
+print("Before:", nums)
+print("After :", timsort(nums))
+# Expected: [1, 3, 4, 5, 7, 8, 9, 12, 15, 19, 21, 23]
+```
+
 ### Selection Algorithms
 
+Given a list of elements, selection algorithms are used to find the k-th smallest or largest element in the list. Therefore, given a list of data elements and a number (k), the goal is to find the k-th smallest or largest element.
+
+* Sorting selection
+* Randomized selection
+* Deterministic selection
+
+#### sorting selection
+
+Simply sort the entire list, then pick the k-th element.
+
+```python
+def sorting_selection(arr, k):
+    arr.sort()
+    return arr[k-1]   # k-th smallest
+```
+
+#### randomized selection
+
+Based on Quicksort’s partitioning.
+
+Pick a random pivot, partition the array.
+* If pivot index = k → found element.
+* If k < pivot index → recurse on left.
+* If k > pivot index → recurse on right.
+
+```python
+def randomized_selection(arr, k):
+    if len(arr) == 1:
+        return arr[0]
+
+    pivot = random.choice(arr)
+    
+    left = [x for x in arr if x < pivot]
+    right = [x for x in arr if x > pivot]
+    equal = [x for x in arr if x == pivot]
+
+    if k <= len(left):
+        return randomized_selection(left, k)
+    elif k <= len(left) + len(equal):
+        return pivot
+    else:
+        return randomized_selection(right, k - len(left) - len(equal))
+```
+
+#### deterministic selection
+
+Use median of medians to choose a good pivot. Guarantees that pivot splits array in a “balanced” way. Avoids worst-case of randomized selection.
+
+Steps:
+
+* Split list into groups of 5.
+* Find the median of each group.
+* Recursively find the median of medians → use as pivot.
+* Partition using pivot.
+* Recurse only into the side containing the k-th element.
+
+```python
+def deterministic_selection(arr, k):
+    if len(arr) <= 5:
+        return sorted(arr)[k-1]
+
+    # Step 1: Split into groups of 5
+    groups = [arr[i:i+5] for i in range(0, len(arr), 5)]
+    medians = [sorted(group)[len(group)//2] for group in groups]
+
+    # Step 2: Find pivot using median of medians
+    pivot = deterministic_selection(medians, len(medians)//2 + 1)
+
+    # Step 3: Partition
+    left = [x for x in arr if x < pivot]
+    right = [x for x in arr if x > pivot]
+    equal = [x for x in arr if x == pivot]
+
+    if k <= len(left):
+        return deterministic_selection(left, k)
+    elif k <= len(left) + len(equal):
+        return pivot
+    else:
+        return deterministic_selection(right, k - len(left) - len(equal))
+```
+
+<img width="1066" height="142" alt="methods" src="https://github.com/user-attachments/assets/992ee02d-a3ad-4cc7-a0d0-c2c62b1f3127" />
+
+| method | idea | average case | worst case | pros | cons |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Sorting Selection | Sort list, pick k-th | O(n log n) | O(n log n) | Simple | Wasteful if only one element needed |
+| Randomized Selection (Quickselect) | Random pivot + partition | O(n) | O(n²) | Fast in practice | Bad pivot = worst case |
+| Deterministic Selection (Median of Medians) | Median of medians pivot | O(n) | O(n) | Worst-case guarantee | Slower constants |
+
 ### String Search Algorithms
+
+There are many popular string search algorithms. They have important applications, such as searching for an element in a text document, detecting plagiarism, using text editing programs, and so on. Brute-force algorithms and the Rabin-Karp, Knuth-Morris-Pratt (KMP), and Boyer-Moore pattern-finding algorithms are among the most popular.
+
+#### brute force
+
+Compare the pattern with the text starting at every possible position. If the pattern matches at position i, report it. Otherwise, move to the next position.
+
+```python
+def brute_force_search(text, pattern):
+    n, m = len(text), len(pattern)
+    for i in range(n - m + 1):
+        if text[i:i+m] == pattern:
+            return i
+    return -1
+```
+
+#### Rabin–Karp
+
+Uses hashing to speed up comparisons. Compute a hash of the pattern and compare it with hashes of substrings in the text. If hashes match → check actual substring to avoid collisions.
+
+```python
+def rabin_karp(text, pattern, prime=101):
+    n, m = len(text), len(pattern)
+    base = 256  # number of possible characters
+
+    pattern_hash = 0
+    text_hash = 0
+    h = 1
+
+    for _ in range(m-1):
+        h = (h * base) % prime
+
+    for i in range(m):
+        pattern_hash = (base * pattern_hash + ord(pattern[i])) % prime
+        text_hash = (base * text_hash + ord(text[i])) % prime
+
+    for i in range(n - m + 1):
+        if pattern_hash == text_hash:
+            if text[i:i+m] == pattern:
+                return i
+
+        if i < n - m:
+            text_hash = (base*(text_hash - ord(text[i])*h) + ord(text[i+m])) % prime
+
+    return -1
+```
+
+#### Knuth–Morris–Pratt (KMP)
+
+Avoids re-checking characters when a mismatch occurs. Builds a Longest Prefix Suffix (LPS) table to know how far to shift the pattern. More efficient than brute-force for repeated patterns.
+
+```python
+def kmp_search(text, pattern):
+    n, m = len(text), len(pattern)
+
+    # Build LPS table
+    lps = [0] * m
+    length = 0
+    i = 1
+    while i < m:
+        if pattern[i] == pattern[length]:
+            length += 1
+            lps[i] = length
+            i += 1
+        elif length > 0:
+            length = lps[length-1]
+        else:
+            lps[i] = 0
+            i += 1
+
+    # Search phase
+    i = j = 0
+    while i < n:
+        if text[i] == pattern[j]:
+            i += 1
+            j += 1
+            if j == m:
+                return i - j
+        else:
+            if j > 0:
+                j = lps[j-1]
+            else:
+                i += 1
+    return -1
+```
+
+#### Boyer–Moore
+
+Skips ahead in the text more aggressively than KMP. Uses two heuristics:
+
+* Bad character rule → If mismatch occurs at char c, shift pattern so next occurrence of c in the pattern lines up.
+* Good suffix rule → If suffix matches, shift pattern to align with next possible suffix.
+
+```python
+def boyer_moore_search(text, pattern):
+    n, m = len(text), len(pattern)
+    if m == 0:
+        return 0
+
+    # Bad character rule table
+    bad_char = {c: -1 for c in set(text)}
+    for i in range(m):
+        bad_char[pattern[i]] = i
+
+    s = 0
+    while s <= n - m:
+        j = m - 1
+        while j >= 0 and pattern[j] == text[s+j]:
+            j -= 1
+
+        if j < 0:
+            return s
+        else:
+            s += max(1, j - bad_char.get(text[s+j], -1))
+
+    return -1
+```
+
+<img width="1034" height="159" alt="string_search_algorithms" src="https://github.com/user-attachments/assets/3f42cc45-0871-44cb-981a-0006d2c3f767" />
+
+| algorithm | idea | average case | worst case | pros | cons |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Brute Force | Compare at every position | O(n·m) | O(n·m) | Simple | Very slow |
+| Rabin-Karp | Hashing with rolling hash | O(n + m) | O(n·m) | Good for multi-pattern search | Hash collisions |
+| KMP | Prefix-suffix (LPS) table | O(n + m) | O(n + m) | Guaranteed linear | Harder to implement |
+| Boyer-Moore | Bad char + good suffix heuristics | O(n/m) best, fast in practice | O(n·m) | Very efficient in real cases | Complex rules |
