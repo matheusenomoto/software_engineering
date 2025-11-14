@@ -748,7 +748,7 @@ class SinglyCircularLinkedList:
                 break  # We've looped once; data not found
 ```
 
-####**doubly circular linked list**
+#### **doubly circular linked list**
 
 Each node has next and prev pointers, and the first and last nodes are connected in both directions.
 
