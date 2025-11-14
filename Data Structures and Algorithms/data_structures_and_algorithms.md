@@ -1028,6 +1028,9 @@ Every node has either 0 or 2 children. No node has only 1 child.
 
 All internal nodes have 2 children and all leaves are at the same level.
 
+<img width="283" height="200" alt="perfect_binary_tree" src="https://github.com/user-attachments/assets/5da4f57b-d726-473a-aa1a-ab4e8a004e9a" />
+
+
 #### complete binary tree
 
 All levels are fully filled except possibly the last. Last level is filled left to right.
