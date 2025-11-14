@@ -2008,6 +2008,98 @@ They are used by compilers and interpreters to record the symbols and different 
 
 ### Graphs and Algorithms
 
+Graphs are non-linear data structures in which the problem is represented as a network by connecting a set of nodes as edges.
+
+#### Graphs
+
+A graph is a set with a finite number of vertices (nodes) and edges (links). It is a formal mathematical representation of a network, a graph G is an ordered pair of a set V of vertices and a set E of edges.
+
+<img width="1097" height="560" alt="graphs_01" src="https://github.com/user-attachments/assets/e22a4031-8295-4963-be55-c4af42f9fb5e" />
+
+* **node or vertice**: A point or node in a graph is called a vertice.
+* **edge**: It is a connection between two nodes.
+* **loop**: When an edge of a node loops back on itself.
+* **degree of a vertice/node**: The total number of edges that are incident at a specific node.
+* **adjacency**: Refers to the connection(s) existing between two nodes.
+* **path**: A sequence of nodes and edges between two nodes represents a path.
+* **leaf node**: A vertice is known as a leaf node when it has exactly one degree (one edge)
+
+#### directed and undirected
+
+When the edges of a graph are undirected, the graph is known as an undirected graph, when the edges have directions, it is known as a directed graph.
+
+<img width="955" height="367" alt="graphs_directed_and_undirected" src="https://github.com/user-attachments/assets/3a035c95-427e-42e1-a1f3-612e7c5e7057" />
+
+#### directed acyclic graph DAG
+
+All edges are directed from one node to another, so the sequence of edges never forms a closed loop. A cycle is formed in a graph when the starting node of the first edge is equal to the ending node of the last edge in a sequence.
+
+<img width="270" height="256" alt="directed_acyclic_graph_dag" src="https://github.com/user-attachments/assets/a83afa54-03e7-4c99-957f-5d0fb55b7362" />
+
+In a directed acyclic graph, if we follow any path from a specific node, we will never find a path that ends at the same node.
+
+#### weighted graph
+
+A weighted graph is one that has a numerical weight associated with its edges. It can be directed or undirected.
+
+<img width="336" height="298" alt="weighted_graph" src="https://github.com/user-attachments/assets/fe36242f-a304-4972-bfff-5635b9ce0ac8" />
+
+#### bipartite graph
+
+A bipartite graph (also known as a bigraph) is a special graph in which all nodes can be divided into two sets in such a way that edges connect the nodes of one set to the nodes of the other set.
+
+<img width="407" height="327" alt="bipartite_graph" src="https://github.com/user-attachments/assets/e72296ac-46a2-4375-9047-9a3b26b554e0" />
+
+#### representation of graphs
+
+A graph representation technique is the way we store the graph in memory.
+
+Graphs can be represented using two methods:
+
+1. adjacency list
+2. adjacency matrix
+
+An adjacency list representation is based on a linked list. In it, we represent the graph by maintaining a list of neighbors for each vertex in the graph. In an adjacency matrix representation, we maintain a matrix that represents which nodes are adjacent to which others in the graph.
+
+If a 200-node graph has, say, 100 edges, it's best to store this type of graph in an adjacency list, because if we use an adjacency matrix, the matrix size will be 200x200 with many zero values. The adjacency matrix is preferable when the graph is expected to have many edges, and thus the matrix will be dense. In the adjacency matrix, it's much easier to search for and verify the presence or absence of an edge compared to when using an adjacency list representation.
+
+#### adjacency list
+
+A linked list can be used to implement an adjacency list. To represent the graph, we need the number of linked lists to be equal to the total number of nodes in the graph.
+
+<img width="747" height="271" alt="adjacency_list" src="https://github.com/user-attachments/assets/1dfbc0a3-ca18-4d60-8922-0b2942912187" />
+
+```python
+adj_list_graph = dict()
+adj_list_graph['A'] = ['B','C']
+adj_list_graph['B'] = ['E','C','A']
+adj_list_graph['C'] = ['A','B','E','f']
+adj_list_graph['E'] = ['B','C']
+adj_list_graph['F'] = ['C']
+
+print(adj_list_graph)
+```
+
+```sh
+# {'A': ['B', 'C'], 'B': ['E', 'C', 'A'], 'C': ['A', 'B', 'E', 'f'], 'E': ['B', 'C'], 'F': ['C']}
+```
+
+#### adjacency matrix
+
+The graph is represented by displaying nodes and their interconnections through edges. Using this method, the dimensions (V x V) of a matrix are used to represent the graph, and each cell represents an edge. A matrix is a two-dimensional array. Therefore, the idea here is to represent the cells of the matrix with a 1 or a 0 depending on whether or not two nodes are connected by an edge.
+
+<img width="264" height="295" alt="adjacency_matrix" src="https://github.com/user-attachments/assets/121efef2-b91d-4bb5-bb47-843d86453b20" />
+
+|  | A | B | C | E | F |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| A | 0 | 1 | 1 | 0 | 0 |
+| B | 1 | 0 | 1 | 1 | 0 |
+| C | 1 | 1 | 0 | 1 | 1 |
+| E | 0 | 1 | 1 | 0 | 0 |
+| F | 0 | 0 | 1 | 0 | 0 |
+
+
+
 ### Search
 
 ### Sorting
