@@ -764,7 +764,7 @@ Circular linked lists are ideal for implementing round-robin scheduling mechanis
 
 ### Stacks and Queues
 
-**Stacks**
+#### **Stacks**
 
 Stacks are a data structure that stores data in a specific order, similar to arrays and linked lists, but with additional restrictions.
 * Data elements can only be inserted at the top of the stack (push operation).
@@ -775,7 +775,7 @@ A stack is a LIFO (last in, first out) structure
 
 <img width="836" height="361" alt="stacks" src="https://github.com/user-attachments/assets/d1388ab3-6073-446d-b25e-956b0d3fe374" />
 
-**Stack using linked lists**
+##### **Stack using linked lists**
 
 ```python
 class Node:
@@ -819,11 +819,11 @@ class Stack:
 
 <img width="879" height="195" alt="stack_using_linked_lists" src="https://github.com/user-attachments/assets/3c71dc16-473c-4bf9-b7dc-a9bd751d6c9f" />
 
-**Application**
+##### **Application**
 
 It's used in expression evaluation and conversion (e.g., infix to postfix), syntax parsing (e.g., matching parentheses or HTML tags), and managing function calls through the call stack. Stacks support undo/redo functionality in text editors, enable backtracking in algorithms like maze solving or Sudoku, and handle navigation history in browsers. They are also essential in depth-first search (DFS), memory management (stack frames for local variables), and are used in virtual machines like the JVM for executing bytecode.
 
-**Queues**
+#### **Queues**
 
 A queue is a list of elements stored in sequence, with the following restrictions:
 
@@ -837,7 +837,7 @@ A queue is a FIFO (first in, first out) structure
 
 <img width="1042" height="268" alt="queues" src="https://github.com/user-attachments/assets/04f212d9-6cd5-48e6-b5c3-b50462c44a63" />
 
-**Queues using lists of python**
+##### **Queues using lists of python**
 
 ```python
 class ListQueue:
@@ -896,7 +896,7 @@ Queue after one dequeue: [20, 30]
  Queue is empty
 ```
 
-**Queues using linked lists**
+##### **Queues using linked lists**
 
 ```python
 class Node(object):
@@ -979,7 +979,7 @@ Queue after 1 dequeue: [20, 30]
 Queue is empty.
 ```
 
-**Application**
+##### **Application**
 
 It can be used to queue individual printouts arriving from each computer on a network to a printer. Operating systems can queue processes to be executed by the CPU. 
 
@@ -1586,9 +1586,231 @@ Heaps can be of two types, max heaps and min heaps. In a max heap, the value of 
 
 <img width="654" height="325" alt="max_and_mean_heap" src="https://github.com/user-attachments/assets/47f2f8bb-3435-4da6-8dc3-530b1399d08f" />
 
+##### insert
 
+Inserting an item into a min-heap occurs in two steps. First, we add the new element to the end of the list and increase the heap size by one. Second, after each insertion operation, we must fit the new element somewhere up the tree to organize all the nodes in a way that meets the heap property.
+
+
+<img width="1085" height="218" alt="heap_insert" src="https://github.com/user-attachments/assets/17fe95fd-c062-45ab-aefa-bf300f6b9088" />
+
+##### delete
+
+When we delete the root node, we'll need a new root node. We'll then take the last item in the list and make it the new root. Since the last node selected may not be the lowest valued element, we will need to rearrange the heap nodes. We'll rearrange the nodes from the root node to the last node. This process is called heapfication. Since we'll be moving from top to bottom in the heap, the process
+is called percolate down.
+
+
+<img width="1150" height="202" alt="heap_delete_root" src="https://github.com/user-attachments/assets/06617bcd-a463-482d-8447-df23f49b75e0" />
+
+<img width="1217" height="290" alt="heap_delete_at_location" src="https://github.com/user-attachments/assets/e9cae815-fd9c-4632-8bb5-e888893683ec" />
+
+```python
+class MinHeap:
+    def __init__(self):
+        self.heap = [0]  # Dummy element at index 0
+        self.size = 0
+
+    def arrange(self, k):  # aka bubble_up
+        while k // 2 > 0:
+            if self.heap[k] < self.heap[k // 2]:
+                self.heap[k], self.heap[k // 2] = self.heap[k // 2], self.heap[k]
+            k //= 2
+    
+    def insert(self, item):
+        self.heap.append(item)
+        self.size += 1
+        self.arrange(self.size)
+    
+    def minchild(self, k):
+        if k * 2 + 1 > self.size:
+            return k * 2
+        elif self.heap[k * 2] < self.heap[k * 2 + 1]:
+            return k * 2
+        else:
+            return k * 2 + 1
+    
+    def sink(self, k):  # aka bubble_down
+        while k * 2 <= self.size:
+            mc = self.minchild(k)
+            if self.heap[k] > self.heap[mc]:
+                self.heap[k], self.heap[mc] = self.heap[mc], self.heap[k]
+            k = mc
+    
+    def delete_at_root(self):
+        item = self.heap[1]
+        self.heap[1] = self.heap[self.size]
+        self.size -= 1
+        self.heap.pop()
+        self.sink(1)
+        return item
+    
+    def delete_at_location(self, k):
+        if k > self.size or k <= 0:
+            raise IndexError("Index out of bounds")
+        
+        removed_item = self.heap[k]
+        self.heap[k] = self.heap[self.size]
+        self.size -= 1
+        self.heap.pop()
+        
+        if k <= self.size:
+            if k > 1 and self.heap[k] < self.heap[k // 2]:
+                self.arrange(k)  # Bubble up
+            else:
+                self.sink(k)     # Bubble down
+        
+        return removed_item
+```
+
+#### priority queue
+
+A priority queue is a queue-like data structure in which data is retrieved according to the FIFO (First In, First Out) policy, but in the priority queue, a priority is associated with the data.
+
+<img width="466" height="186" alt="priority_queue" src="https://github.com/user-attachments/assets/5787a900-0456-46a4-a4ec-8b5b3c98932d" />
+
+```python
+class Node:
+    def __init__(self, info, priority):
+        self.info = info
+        self.priority = priority
+
+class PriorityQueue:
+    def __init__(self):
+        self.queue = []
+
+    def insert(self, node):
+        for i in range(len(self.queue)):
+            if node.priority < self.queue[i].priority:
+                self.queue.insert(i, node)
+                return
+        self.queue.append(node)
+
+    def delete(self):
+        if not self.queue:
+            return None
+        return self.queue.pop(0)
+
+    def show(self):
+        for node in self.queue:
+            print(f'{node.info} - {node.priority}')
+```
+
+```python
+class PriorityQueueHeap:
+    def __init__(self):
+        self.heap = [()]
+        self.size = 0
+    
+    def arrange(self, k):
+        while k // 2 > 0:
+            if self.heap[k][0] < self.heap[k//2][0]:
+                self.heap[k], self.heap[k//2] = self.heap[k//2], self.heap[k]
+            k //= 2
+    
+    def insert(self, priority,item):
+        self.heap.append((priority, item))
+        self.size += 1
+        self.arrange(self.size)
+
+    def sink(self, k):
+        while k * 2 <= self.size:
+            mc = self.minchild(k)
+            if self.heap[k][0] > self.heap[mc][0]:
+                self.heap[k], self.heap[mc] = self.heap[mc], self.heap[k]
+            k = mc
+    
+    def minchild(self, k):
+        if k * 2 +1 > self.size:
+            return k * 2 
+        elif self.heap[k*2][0] < self.heap[k*2+1][0]:
+            return k * 2
+        else:
+            return k * 2 + 1
+    
+    def delete_at_root(self):
+        item = self.heap[1][1]
+        self.heap[1] = self.heap[self.size]
+        self.size -= 1
+        self.heap.pop()
+        self.sink(1)
+        return item
+```
 
 ### Hash Tables
+
+It is a data structure that implements an associative array in which data is stored by mapping keys to values as key-value pairs. When we look up an element in the hash table, hashing the key provides the index of the corresponding record in the table.
+
+<img width="702" height="248" alt="hash_table_01" src="https://github.com/user-attachments/assets/ae172cb9-f572-491e-91f2-69a96c00cee7" />
+
+##### intro
+
+It is a data structure that implements an associative array in which data is stored by mapping keys to values as key-value pairs. When we look up an element in the hash table, hashing the key provides the index of the corresponding record in the table.
+
+Dictionaries are a widely used data structure, typically created using a hash table. This model uses the key-value concept instead of using the index to access the value, the key is used.
+
+#### hash function
+
+Hashing is a technique in which, when we feed data of arbitrary size to a function, we obtain a simplified, smaller value. This function is called a hashing function.
+
+In practice, most hash functions are imperfect and generate collisions. Hash functions can provide the same hash value for more than one given piece of data.
+
+```python
+value = sum(map(ord, 'hello world'))
+print(value)
+```
+<img width="554" height="104" alt="sum_map_hello_world" src="https://github.com/user-attachments/assets/ef4be1f2-8cef-46f7-b5f3-68f4d92a666d" />
+
+```python
+value = sum(map(ord, 'world hello'))
+print(value)
+```
+
+```python
+value = sum(map(ord, 'gello xorld'))
+print(value)
+```
+
+```sh
+enomoto@ubuntu:~$ python3 simple_hash.py 
+1116
+1116
+1116
+```
+#### perfect hash function
+
+Hash functions allow us to obtain a unique value for a specific string (which can be any data type). The goal is to create a hash function that reduces collisions, is fast, easy to calculate, and distributes data items evenly in the hash table.
+
+The difficulty lies in the tradeoff between the collision-free hash function and the speed that meets the hash table.
+
+<img width="780" height="147" alt="perfect_hash_function_01" src="https://github.com/user-attachments/assets/de71c6b9-cdc1-41d9-bfb7-e96623434f73" />
+
+```python
+def myhash(s):
+    mult = 1
+    hv = 0
+    for ch in s:
+        hv += mult * ord(ch)
+        mult += 1
+    
+    return hv
+```
+
+```sh
+hello world  - hashed: 6736
+world hello  - hashed: 6616
+gello xorld  - hashed: 6742
+ad  - hashed: 297
+ga  - hashed: 297
+```
+
+We still won't have a perfect hash function, since we got the same hash values for these two different strings.
+
+#### Collision Resolution
+
+Typically, each position in a hash table is called a slot or bucket and can store one element. Each data item, in the form of a key-value pair, is stored in the hash table in a position defined by the key's hash value.
+
+<img width="642" height="367" alt="collision_resolution" src="https://github.com/user-attachments/assets/09191f6a-5a7f-4785-a481-e97422c3a2ef" />
+
+One way to resolve this type of collision is to find another empty slot from the collision position. This collision resolution process is called open addressing.
 
 ### Graphs and Algorithms
 
