@@ -1007,6 +1007,8 @@ A tree is a way to organize data in a hierarchical structure. It starts from one
 * **height**: The height of a tree is the number of levels from the root down to the deepest leaf node.
 * **depth**: The depth of a node is how far it is from the root (how many edges you go down to reach it).
 
+<img width="982" height="591" alt="tree_terminologies" src="https://github.com/user-attachments/assets/df4a5e92-abbf-460f-9320-43412a2b45db" />
+
 #### binary tree
 
 A binary tree is a special kind of tree where each node has at most two children. These children are often called:
