@@ -1812,6 +1812,200 @@ Typically, each position in a hash table is called a slot or bucket and can stor
 
 One way to resolve this type of collision is to find another empty slot from the collision position. This collision resolution process is called open addressing.
 
+#### open addressing
+
+Key values are stored in the hash table, and collisions are resolved using the probing technique. Collisions are resolved by probing from an alternate position until reaching an unused slot in the hash table for storing the data item.
+
+There are 3 types of probing:
+
+* Linear Probing
+* Quadratic Probing
+* Double Hashing
+
+##### Linear Probing
+
+Visiting each slot is a linear way to resolve collisions, in which we linearly search for the next available slot by adding 1 to the previous hash value where the collision occurred. This is known as linear probing. We can resolve the conflict by adding 1 to the sum of the ordinal values of each character in the string key, which will be used to calculate the final hash value by its modulo the size of the hash table.
+
+<img width="432" height="229" alt="linear_probing" src="https://github.com/user-attachments/assets/085f340b-cb40-47db-bf58-21d8005c1d6f" />
+
+##### storing elements in a hash table
+
+The put method stores a key–value pair in the hash table by first creating a HashItem and finding its position using the _hash function. If that position is already taken by a different key, it uses linear probing (checking the next slots in order) until it finds either an empty slot or the same key to update. If it finds an empty slot, it increases the count and saves the item there, then checks if the table needs to grow.
+
+##### augment a hash table
+
+To increase the table size, we need to compare the table size and the table count. Typically, the hash table load factor is used to expand the table size; it is defined by the number of used slots (n) divided by the total number (k) of slots in the table.
+
+load factor = n/k
+
+```python
+class HashItem:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+    
+class HashTable:
+    def __init__(self, initial_size=10):
+        self.size = initial_size
+        self.slots = [None for _ in range(self.size)]
+        self.count = 0
+        self.MAXLOADFACTOR = 0.6  # trigger growth after > 0.6 load factor
+    
+    def _hash(self, key):
+        mult = 1
+        hv = 0
+        for ch in key:
+            hv += mult * ord(ch)
+            mult += 1
+        return hv % self.size
+    
+    def put(self, key, value):
+        item = HashItem(key, value)
+        h = self._hash(key)
+        while self.slots[h] is not None:
+            if self.slots[h].key == key:
+                break
+            h = (h + 1) % self.size
+        if self.slots[h] is None:
+            self.count += 1
+        self.slots[h] = item
+        self.check_growth()
+    
+    def check_growth(self):
+        load_factor = self.count / self.size
+        if load_factor > self.MAXLOADFACTOR:
+            print(f"\nLoad factor before growing: {load_factor:.2f}")
+            self.growth()
+            print(f"Load factor after growing: {self.count / self.size:.2f}")
+    
+    def growth(self):
+        old_slots = self.slots
+        old_size = self.size
+        self.size = 2 * self.size
+        self.slots = [None for _ in range(self.size)]
+        self.count = 0
+        print(f"\n--- GROWTH from {old_size} to {self.size} slots ---")
+        for item in old_slots:
+            if item is not None:
+                print(f"Rehashing key '{item.key}' from old hash {self._hash_old(item.key, old_size)} to new hash {self._hash(item.key)}")
+                self.put(item.key, item.value)
+
+    def _hash_old(self, key, old_size):
+        """Helper to compute old hash value for display."""
+        mult = 1
+        hv = 0
+        for ch in key:
+            hv += mult * ord(ch)
+            mult += 1
+        return hv % old_size
+
+    def get(self, key):
+        h = self._hash(key)
+        while self.slots[h] is not None:
+            if self.slots[h].key == key:
+                return self.slots[h].value
+            h = (h + 1) % self.size
+        return None
+
+    def __setitem__(self, key, value):
+        self.put(key, value)
+
+    def __getitem__(self, key):
+        return self.get(key)
+
+    def display_slots(self):
+        for i, v in enumerate(self.slots):
+            if v:
+                print(f"{i}: {v.key} -> {v.value}")
+            else:
+                print(f"{i}: None")
+
+
+# -------- DEMO --------
+ht = HashTable(initial_size=10)
+
+# Insert keys until we pass load factor 0.6
+for i in range(1, 8):  # 7th insert triggers growth
+    ht[f"key{i}"] = i
+    print(f"Inserted key{i}, hash (size={ht.size}): {ht._hash(f'key{i}')}")
+
+print("\nSlots after insertion (before growth):")
+ht.display_slots()
+```
+
+```sh
+Inserted key1, hash (size=10): 8
+Inserted key2, hash (size=10): 2
+Inserted key3, hash (size=10): 6
+Inserted key4, hash (size=10): 0
+Inserted key5, hash (size=10): 4
+Inserted key6, hash (size=10): 8
+
+Load factor before growing: 0.70
+
+--- GROWTH from 10 to 20 slots ---
+Rehashing key 'key4' from old hash 0 to new hash 0
+Rehashing key 'key2' from old hash 2 to new hash 12
+Rehashing key 'key7' from old hash 2 to new hash 12
+Rehashing key 'key5' from old hash 4 to new hash 4
+Rehashing key 'key3' from old hash 6 to new hash 16
+Rehashing key 'key1' from old hash 8 to new hash 8
+Rehashing key 'key6' from old hash 8 to new hash 8
+Load factor after growing: 0.35
+Inserted key7, hash (size=20): 12
+
+Slots after insertion (before growth):
+0: key4 -> 4
+1: None
+2: None
+3: None
+4: key5 -> 5
+5: None
+6: None
+7: None
+8: key1 -> 1
+9: key6 -> 6
+10: None
+11: None
+12: key2 -> 2
+13: key7 -> 7
+14: None
+15: None
+16: key3 -> 3
+17: None
+18: None
+19: None
+```
+
+##### quadratic probing
+
+Also an open addressing scheme for resolving collisions in hash tables. It resolves the collision by calculating the key's hash value and adding successive values of a quadratic polynomial. The new hash is calculated iteratively until an empty slot is found. If a collision occurs, the next free slots are checked at locations h + 1², h + 2², h + 3², and so on.
+
+<img width="599" height="446" alt="quadratic_probing" src="https://github.com/user-attachments/assets/c6631778-1e07-4074-881c-7f8c4baa8909" />
+
+##### double hashing
+
+The double hashing collision resolution technique uses two hash functions. First, the primary function is used to calculate the index position in the hash table, and whenever a collision occurs, we use another hash function to find the next free slot and store the data by incrementing the hash value.
+
+(h¹(key) + i*h²(key)) mod table_size
+
+h¹(key) = key mod table_size
+
+It is important that the second hash function is fast, easy to compute, should not have 0 as a result, and should be different from the first function.
+
+<img width="728" height="481" alt="double_hashing" src="https://github.com/user-attachments/assets/c21f5af1-98a3-4a9c-8547-c6b85a352fce" />
+
+##### separate chaining
+
+In chaining, hash table slots are initialized with empty lists. When a data element is inserted, it is appended to the list that corresponds to its hash value.
+
+<img width="975" height="219" alt="separate_chaining" src="https://github.com/user-attachments/assets/90f1169f-a209-4679-8639-2d15ce86ebcc" />
+
+
+##### symbol table 
+
+They are used by compilers and interpreters to record the symbols and different entities, such as objects, classes, variables and function names, that have been declared in a program.
+
 ### Graphs and Algorithms
 
 ### Search
