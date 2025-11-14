@@ -2257,6 +2257,198 @@ Prim's algorithm also relies on a greedy approach to finding the minimum-cost sp
 
 ### Search
 
+An important operation for every data structure is searching for elements in a data collection. Types of search algorithms:
+
+* Linear search algorithm
+* Jump search algorithm
+* Binary search algorithm
+* Interpolation search algorithm
+* Exponential search algorithm
+
+#### search intro
+
+A search operation is performed to find the location of the desired data item within a collection of data items. The search algorithm should return the location where the searched value is present.
+
+#### linear search
+
+The simplest approach to searching for an item in a list is to do a linear search, in which case we search for items one by one in the entire list. The linear search approach depends on how the list items are stored in memory.
+
+#### unordered linear search
+
+Unordered linear search is a linear search algorithm in which the given list of data items is unordered.
+
+```python
+def linear_search(unordered_list, term):
+    for i, item in enumerate(unordered_list):
+        if term == unordered_list[i]:
+            return i
+    return None
+```
+
+<img width="207" height="50" alt="unordered_linear_search" src="https://github.com/user-attachments/assets/b4b74a33-f769-4fb6-a3ef-d3116f490799" />
+
+#### ordered linear search
+
+If the data elements are already orphaned in an orderly manner, the linear search algorithm can be improved.
+* moves sequentially
+* if the value of a search item is greater than the object or item currently being checked in the loop, exit and return None
+
+```python
+def linear_search_ordered(ordered_list, term):
+    ordered_list_size = len(ordered_list)
+
+    for i in range(ordered_list_size):
+        if term == ordered_list[i]:
+            return i
+        elif ordered_list[i] > term:
+            return None
+    return None
+```
+
+<img width="207" height="50" alt="ordered_linear_search" src="https://github.com/user-attachments/assets/474b89d9-f778-45c1-a707-9bd8ddee524e" />
+
+#### jump search
+
+The Jump Search algorithm is an improvement over Linear Search for finding a specific element in a sorted (ordered) list. It works as follows:
+
+* Divide the list into blocks of size approximately √n.
+* Jump through the list by checking the last element of each block:
+    * If the search value is greater than the last element of the block, move to the next block.
+    * If the search value is less than or equal to the last element of the block, the element (if it exists) must be within this block.
+* Apply Linear Search inside the identified block.
+* If the search value is equal to the compared element, return its index.
+
+<img width="962" height="241" alt="jump_search" src="https://github.com/user-attachments/assets/dcd1067d-058a-46cb-ad7c-63fb75fa510a" />
+
+```python
+def jump_search(ordered_list, item):
+    print('Entering Jump Search')
+    list_size = len(ordered_list)
+    block_size = int(math.sqrt(list_size))  # must be integer
+    i = 0
+    
+    while i < list_size:
+        print(f'Block under consideration - {ordered_list[i:i+block_size]}')
+        
+        # If last element of block is >= item, search inside the block
+        if i + block_size >= list_size or ordered_list[i + block_size - 1] >= item:
+            block_list = ordered_list[i:min(i + block_size, list_size)]
+            j = linear_search_ordered(block_list, item)
+            if j is None:
+                print('Element not found')
+                return None
+            return i + j
+        
+        i += block_size
+    
+    return None
+```
+#### binary search
+
+First, it compares the search element with the middle element of the list. If the search element is smaller than the middle element, the half of the list with elements larger than the middle element is discarded. The process is repeated recursively. With each iteration, half of the search space is discarded.
+
+```python
+def binary_search(arr, start, end, key):
+    while start <= end:
+        mid = start + (end - start) // 2
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            start = mid + 1
+        else:
+            end = mid - 1
+    return -1
+```
+
+<img width="428" height="421" alt="algorithm_binary_search_01" src="https://github.com/user-attachments/assets/91c23d7c-8129-499e-9ebc-51a59f22099c" />
+
+#### interpolation search
+
+The binary search algorithm is efficient at performing searches. It always reduces the search space by half, discarding one of the halves depending on the value of the item being searched. The interpolation algorithm works efficiently when there are elements evenly distributed in the sorted list. In interpolation search, we calculate the starting position of the search depending on the item being searched. The starting position is almost always near the beginning or end of the list; if the search item is near the first element, the starting position should be near the beginning of the list, and if the item is near the end of the list, the starting position should be near the end.
+
+```python
+def interpolation_search(ordered_list, item):
+    low = 0
+    high = len(ordered_list) - 1
+
+    while low <= high and item >= ordered_list[low] and item <= ordered_list[high]:
+        # Estimate position using interpolation formula
+        if ordered_list[high] == ordered_list[low]:
+            if ordered_list[low] == item:
+                return low
+            else:
+                return None
+
+        pos = low + int(
+            ((float(high - low) / (ordered_list[high] - ordered_list[low])) * (item - ordered_list[low]))
+        )
+
+        # Check the estimated position
+        if ordered_list[pos] == item:
+            return pos
+        elif ordered_list[pos] < item:
+            low = pos + 1
+        else:
+            high = pos - 1
+
+    return None
+
+ordered_list = [44,60,75,100,120,230,250]
+print(interpolation_search(ordered_list, 230))   # Expected: 5
+```
+
+<img width="854" height="138" alt="interpolation_search" src="https://github.com/user-attachments/assets/648585e3-b5a3-4aea-aeae-c3aac8f0545e" />
+
+#### interpolation concepts
+
+Interpolation is the mathematical procedure applied to derive value between two points having a prescribed value. In simple words, we can describe it as a process of approximating the value of a given function at a given set of discrete points. Hence, one can apply it in estimating varied cost concepts, mathematics, statistics, etc.
+
+<img width="534" height="716" alt="interpolation_math" src="https://github.com/user-attachments/assets/2074adac-2066-44dd-a877-4410ad1f37cb" />
+
+#### exponential search
+
+Exponential search is another search algorithm most commonly used when the number of elements in a list is large. It is also known as galloping search and doubling search. The exponential search algorithm works in two steps:
+
+* Given a sorted array of n data elements, we first determine the subrange in the original list where the desired item may be present.
+* Then, we use the binary search algorithm to find the sought-after value within the subrange of elements identified in the previous step.
+
+```python
+def binary_search(ordered_list, left, right, item):
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if ordered_list[mid] == item:
+            return mid
+        elif ordered_list[mid] < item:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return None
+
+def exponential_search(ordered_list, item):
+    if not ordered_list:
+        return None
+
+    # Check first element
+    if ordered_list[0] == item:
+        return 0
+
+    # Find range for binary search by repeated doubling
+    index = 1
+    n = len(ordered_list)
+    while index < n and ordered_list[index] <= item:
+        index *= 2
+
+    # Do binary search in the found range
+    return binary_search(ordered_list, index // 2, min(index, n - 1), item)
+
+ordered_list = [3,5,8,10,15,26,35,45,56,80,120,125,138]
+print(exponential_search(ordered_list, 125))
+```
+<img width="1202" height="179" alt="exponential_search" src="https://github.com/user-attachments/assets/e4eb0d71-995b-417e-be42-2538cf238da8" />
+
+<img width="698" height="288" alt="binary_search" src="https://github.com/user-attachments/assets/d202505f-d8a7-4d96-b1c6-2b30e56d1d83" />
+
 ### Sorting
 
 ### Selection Algorithms
