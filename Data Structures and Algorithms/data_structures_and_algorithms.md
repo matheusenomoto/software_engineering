@@ -2098,7 +2098,162 @@ The graph is represented by displaying nodes and their interconnections through 
 | E | 0 | 1 | 1 | 0 | 0 |
 | F | 0 | 0 | 1 | 0 | 0 |
 
+#### graph traversal
 
+A graph traversal means visiting all nodes in the graph while recording which nodes have already been visited and which have not yet been visited. Graph traversal, also known as a graph search algorithm, is very similar to tree scanning algorithms, such as pre-order, in-order, and post-order, and to level-order algorithms, as with them, in a graph search algorithm, we start at a node and traverse the edges until we reach all the other nodes in the graph.
+
+A common graph traversal strategy is to follow a path until an endpoint is reached and then reverse the upward sweep until an alternative path is found. Graph traversal algorithms are important for solving several basic problems. They can be useful for determining how to get from one node to another in a graph and for defining which path from node A to B is better than other paths.
+
+#### breadth-first search
+
+It works very similarly to how a level-by-level in-order traversal algorithm works in a tree structure. It operates level by level, starting by visiting the root node at level 1, and then visiting all nodes in the first level directly connected to the root node. After visiting all nodes at level 1, nodes at level 2 are visited.
+
+A queue data structure is used to store information about the nodes to be visited in a graph.
+
+<img width="1310" height="625" alt="queue_data_structure" src="https://github.com/user-attachments/assets/e17a5bdc-2f72-49fb-b9fa-d8ae3adc843a" />
+
+#### Example
+
+<img width="597" height="400" alt="image" src="https://github.com/user-attachments/assets/bae83a06-4266-4c0e-a1ef-5b93573f9832" />
+
+```python
+from collections import deque
+
+graph = dict()
+graph['A'] = ['B','G','D']
+graph['B'] = ['A','F','E']
+graph['C'] = ['F', 'H']
+graph['D'] = ['F', 'A']
+graph['E'] = ['B', 'G']
+graph['F'] = ['B', 'D', 'C']
+graph['G'] = ['A', 'E']
+graph['H'] = ['C']
+
+print(graph)
+
+def breadth_first_search(graph, root):
+    visited_vertices = list()
+    graph_queue = deque([root])
+    visited_vertices.append(root)
+
+    node = root
+
+    while len(graph_queue) > 0:
+        node = graph_queue.popleft()
+        adj_nodes = graph[node]
+
+        remaining_elements = set(adj_nodes).difference(set(visited_vertices))
+        if len(remaining_elements) > 0:
+            for elem in sorted(remaining_elements):
+                visited_vertices.append(elem)
+                graph_queue.append(elem)
+    
+    return visited_vertices
+
+print(breadth_first_search(graph, 'A'))
+```
+
+```sh
+# ['A', 'B', 'D', 'G', 'E', 'F', 'C', 'H']
+```
+
+#### depth-first search
+
+Traversing the graph is similar to how the pre-order traversal algorithm works on trees. We traverse the tree to the depth of any given path in the graph. Therefore, child nodes are visited before their sibling nodes.
+
+We start with the root node, visit it first, and then check all adjacent vertices of the current node. We begin by visiting one of the adjacent nodes. If the edge leads to a visited node, we return to the current node. However, if the edge leads to an unvisited node, we go to that node and continue processing from there. We continue with the same process until we reach an endpoint where there are no visited nodes. In this case, we return to the previous nodes and stop when we reach the root node.
+
+```python
+graph = dict()
+graph['A'] = ['B','S']
+graph['B'] = ['A']
+graph['S'] = ['A', 'C', 'G']
+graph['D'] = ['C']
+graph['G'] = ['S', 'F', 'H']
+graph['H'] = ['G', 'E']
+graph['E'] = ['C', 'H']
+graph['F'] = ['C', 'G']
+graph['C'] = ['D', 'S', 'E', 'F']
+
+def depth_first_search(graph, root):
+    visited_vertices = []
+    stack = [root]
+
+    while stack:
+        node = stack.pop()
+        if node not in visited_vertices:
+            visited_vertices.append(node)
+            # Push neighbors in reverse order to get correct traversal
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited_vertices:
+                    stack.append(neighbor)
+
+    return visited_vertices
+
+print(depth_first_search(graph, 'A'))
+```
+
+```sh
+['A', 'B', 'S', 'C', 'D', 'E', 'H', 'G', 'F']
+```
+
+<img width="1064" height="313" alt="depth_first_search_01" src="https://github.com/user-attachments/assets/b7a49f1b-d2c0-47c6-820d-798f238a312f" />
+<img width="1064" height="313" alt="depth_first_search_02" src="https://github.com/user-attachments/assets/60992890-62b0-4967-851a-e2e04fd2ace8" />
+<img width="1064" height="313" alt="depth_first_search_03" src="https://github.com/user-attachments/assets/358a33e9-afff-4db1-9c58-ce9bad2c4bcf" />
+<img width="1064" height="313" alt="depth_first_search_04" src="https://github.com/user-attachments/assets/095c0281-f713-4ddb-a148-8c493a1173b2" />
+<img width="1064" height="313" alt="depth_first_search_05" src="https://github.com/user-attachments/assets/b2d27414-3d5d-4fc4-9090-10bfd8c10b59" />
+<img width="1064" height="313" alt="depth_first_search_06" src="https://github.com/user-attachments/assets/94f22abf-2413-4cba-8361-8dea0193c89f" />
+<img width="1064" height="313" alt="depth_first_search_07" src="https://github.com/user-attachments/assets/2ad5a63c-71b5-4f69-bac9-eb8666cf1f87" />
+<img width="1064" height="313" alt="depth_first_search_08" src="https://github.com/user-attachments/assets/6c80e3e1-e275-476d-9366-3e4db0fdf174" />
+<img width="1064" height="313" alt="depth_first_search_09" src="https://github.com/user-attachments/assets/84f66576-1ce8-48b2-9e4a-023178bbf0a2" />
+
+```python
+graph = dict()
+graph['A'] = ['B','S']
+graph['B'] = ['A']
+graph['S'] = ['A', 'C', 'G']
+graph['D'] = ['C']
+graph['G'] = ['S', 'F', 'H']
+graph['H'] = ['G', 'E']
+graph['E'] = ['C', 'H']
+graph['F'] = ['C', 'G']
+graph['C'] = ['D', 'S', 'E', 'F']
+
+def depth_first_search(graph, root):
+    visited_vertices = []
+    stack = [root]
+
+    while stack:
+        node = stack.pop()
+        if node not in visited_vertices:
+            visited_vertices.append(node)
+            # Push neighbors in reverse order to get correct traversal
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited_vertices:
+                    stack.append(neighbor)
+
+    return visited_vertices
+
+print(depth_first_search(graph, 'A'))
+```
+
+```sh
+['A', 'B', 'S', 'C', 'D', 'E', 'H', 'G', 'F']
+```
+
+#### minimum spanning tree MST
+
+It is a subset of the edges of a connected graph, containing a weighted edge graph that connects all nodes, with the smallest possible total edge weights and no cycles.
+
+<img width="1008" height="352" alt="minimum_spanning_tree_mst" src="https://github.com/user-attachments/assets/8989cfb1-f593-4bbd-8348-d74e8fa92e3f" />
+
+#### Kruskal's algorithm
+
+Kruskal's algorithm is widely used to search for the spanning tree of a specific weighted, connected, and undirected graph. It is based on the greedy approach, as we search for the lowest-cost edge and add it to the tree, then, in each iteration, we continue adding the lowest-weight edge to the tree.
+
+#### Prim's algorithm
+
+Prim's algorithm also relies on a greedy approach to finding the minimum-cost spanning tree. It's very similar to Dijkstra's algorithm for finding the shortest path in a graph. In this algorithm, we start with an arbitrary node as the starting point and then examine the edges leading from the selected nodes and traverse the one with the lowest cost (or weight).
 
 ### Search
 
