@@ -1116,6 +1116,8 @@ G-D-H-B-E-A-F-C
 
 #### pre-order
 
+We start by traversing the root node, left subtree, and right subtree.
+
 <img width="554" height="296" alt="pre-order" src="https://github.com/user-attachments/assets/fcc285c7-f6d7-4657-8f17-04625ce759cb" />
 
 ```python
@@ -1126,6 +1128,27 @@ def preorder(root_node):
     print(current.data)
     preorder(current.left_child)
     preorder(current.right_child)
+```
+
+```sh
+G-H-D-E-B-F-C-A
+```
+
+#### pos-order
+
+We start by traversing the left subtree, right subtree and root node.
+
+<img width="554" height="318" alt="pos_order" src="https://github.com/user-attachments/assets/03190b41-b44d-48f9-857f-4719ebec89c7" />
+
+
+```python
+def posorder(root_node):
+    current = root_node
+    if current is None:
+        return
+    posorder(current.left_child)
+    posorder(current.right_child)
+    print(current.data)
 ```
 
 ```sh
