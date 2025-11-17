@@ -2823,6 +2823,24 @@ def deterministic_selection(arr, k):
 | Randomized Selection (Quickselect) | Random pivot + partition | O(n) | O(n²) | Fast in practice | Bad pivot = worst case |
 | Deterministic Selection (Median of Medians) | Median of medians pivot | O(n) | O(n) | Worst-case guarantee | Slower constants |
 
+### **Real-World Applications**
+
+Selection algorithms are fundamental tools in computing, enabling efficient data processing in a wide range of applications where finding a specific rank or percentile is more important than ordering the entire dataset.
+
+#### **Data Analysis and Statistics**
+*   **Finding Medians, Quartiles, and Percentiles:** This is the most direct application. Statisticians and data scientists constantly need to find these values to understand data distribution, identify outliers, and perform robust analysis. Using a linear-time selection algorithm like Quickselect is far more efficient than sorting terabytes of data just to find the median.
+*   **Outlier Detection:** To find outliers, one might look for data points above the 99th percentile or below the 1st percentile. Selection algorithms can find the values at these thresholds directly.
+
+#### **Database and System Optimization**
+*   **Top-K Queries:** Database systems often need to answer queries like "find the 100th highest salary" or "list the top 50 best-selling products." Instead of sorting millions of records, the database can use a selection algorithm to find the k-th item and then retrieve all items above it, saving significant computational resources.
+*   **Resource Management:** In a distributed system, a scheduler might need to find the task with the median processing time to balance workloads. A selection algorithm can identify this task without needing a sorted list of all pending jobs.
+
+#### **Computer Graphics and Image Processing**
+*   **Median Filtering:** A common technique for reducing "salt and pepper" noise in an image is the median filter. For each pixel, the algorithm looks at its neighboring pixels, finds their median intensity value using a selection algorithm, and replaces the original pixel with that median value. This is highly effective at removing noise while preserving edges better than a simple average.
+
+#### **Leaderboards and Competitive Ranking**
+*   **Finding the Cutoff Score:** In online gaming or competitive events, you might need to determine the minimum score required to be in the "Top 1,000 players." This is a classic selection problem: you are looking for the (N - 1000)-th smallest score, where N is the total number of players.
+
 ### String Search Algorithms
 
 There are many popular string search algorithms. They have important applications, such as searching for an element in a text document, detecting plagiarism, using text editing programs, and so on. Brute-force algorithms and the Rabin-Karp, Knuth-Morris-Pratt (KMP), and Boyer-Moore pattern-finding algorithms are among the most popular.
