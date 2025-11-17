@@ -100,6 +100,14 @@ These are analytical systems, often called data warehouses, designed for busines
 *   **Application Example: Real-time Web Analytics Dashboard**
     *   A popular news website uses ClickHouse to power its live analytics dashboard. The dashboard shows editors real-time metrics like `“How many users are currently reading articles in the ‘Technology’ section?”` or `“What are the top 10 referring websites in the last hour?”`. The queries are fast, even on a massive stream of click data.
 
+### AWS Solutions for OLTP, OLAP, and Hybrid Workloads
+
+While many systems specialize, some modern cloud services blur the lines or offer solutions spanning both categories.
+
+*   **[Amazon Redshift](https://aws.amazon.com/redshift/):** As highlighted above, Redshift is a cloud data warehouse designed specifically for OLAP and excels at large-scale analytical queries.
+*   **[Amazon Relational Database Service (Amazon RDS)](https://aws.amazon.com/rds/):** This is a managed relational database service. While you can use it to run primary OLTP workloads, it also has OLAP functionality. For example, you can use it with Oracle OLAP to perform complex queries on dimensional cubes.
+*   **[Amazon Aurora](https://aws.amazon.com/rds/aurora/):** This is a MySQL and PostgreSQL compatible cloud relational database. It is uniquely engineered for high performance and can run both demanding OLTP transactions and complex OLAP analytical workloads, making it a powerful hybrid solution.
+
 ### Summary
 
 > **OLTP** is optimized for **writing** data quickly and reliably to keep the business running.
