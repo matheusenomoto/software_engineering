@@ -33,7 +33,7 @@ Detailed comparison of their characteristics.
 
 | Feature | **OLTP (Online Transaction Processing)** | **OLAP (Online Analytical Processing)** |
 | :--- | :--- | :--- |
-| **Primary Purpose** | Running day-to-day business operations | �� Analyzing business performance for insights |
+| **Primary Purpose** | Running day-to-day business operations | Analyzing business performance for insights |
 | **Core Function** | Data Processing | Data Analysis |
 | **Data Source** | Original source of data (real-time) | Consolidated from one or more OLTP systems |
 | **Data Structure** | Normalized (3NF), relational database | Denormalized, multidimensional (Star/Snowflake Schema) |
