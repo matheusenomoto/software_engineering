@@ -24,7 +24,7 @@ Example: When you visit a website, your browser downloads the logo and saves it.
 
 What it is: A geographically distributed network of servers that stores copies of static content (images, videos, etc.) from a site. Content is delivered from the server closest to the user.
 
-    Example: An e-commerce company in Europe uses a CDN. When a user in Brazil accesses the site, product images are served from a CDN server in São Paulo instead of one in Frankfurt, drastically reducing latency.
+Example: An e-commerce company in Europe uses a CDN. When a user in Brazil accesses the site, product images are served from a CDN server in São Paulo instead of one in Frankfurt, drastically reducing latency.
 
 
 **Server-Side Cache**
@@ -33,17 +33,17 @@ This is the most common type in system design and can be divided into:
 
 In-Memory Cache (Application-Level): Data is stored in the application server’s RAM. It’s extremely fast but limited to available memory and not shared between multiple application instances.
 
-    Example: A Java app may use a library like Caffeine or Guava Cache to store in memory a list of product categories that rarely change.
+Example: A Java app may use a library like Caffeine or Guava Cache to store in memory a list of product categories that rarely change.
 
 Distributed Cache (External): A separate, centralized service optimized for caching, accessible by multiple application instances.
 
-    Example: Several microservices in a checkout system use a Redis or Memcached cluster to store user session data, ensuring session consistency across different servers.
+Example: Several microservices in a checkout system use a Redis or Memcached cluster to store user session data, ensuring session consistency across different servers.
 
 **Database Cache**
 
 What it is: The database itself has internal caching mechanisms to speed up queries, storing frequently executed query results or disk data blocks in memory.
 
-    Example: A database like PostgreSQL keeps recent queries and execution plans in shared memory to accelerate future executions of the same query.
+Example: A database like PostgreSQL keeps recent queries and execution plans in shared memory to accelerate future executions of the same query.
 
 **Advantages**
 
