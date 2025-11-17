@@ -2,9 +2,9 @@
 
 RAID, or , is a technology that combines multiple hard drives (HDDs or SSDs) to function as a single logical unit. The goal is to achieve one or more of the following benefits:
 
-    1.Redundancy: Protect data against the failure of one or more disks. If one disk fails, the system continues to function and the data can be recovered.
-    2.Performance: Increase read and write speed by distributing operations across multiple disks.
-    3.Capacity: Combine the storage space of multiple disks into a single, larger volume.
+1.Redundancy: Protect data against the failure of one or more disks. If one disk fails, the system continues to function and the data can be recovered.
+2.Performance: Increase read and write speed by distributing operations across multiple disks.
+3.Capacity: Combine the storage space of multiple disks into a single, larger volume.
 
 RAID is not a backup. RAID protects against hardware failure (a disk stopping), but it does not protect against accidental file deletion, data corruption by software, ransomware attacks, or physical disasters (fire, theft). A proper backup policy is still essential.
 
