@@ -55,9 +55,9 @@ Understanding the flow of interaction is key to grasping MVC. Here is a typical 
 3.  **Controller Processes:** The Controller receives the request. It determines that the user wants a list of all users.
 4.  **Controller Calls Model:** The Controller asks the Model, "Can you please give me all the users?"
 5.  **Model Responds:**
-  1. The Model queries the database.
-  2. Retrieves the list of users.
-  3. Returns it to the Controller.
+  * 1. The Model queries the database.
+  * 2. Retrieves the list of users.
+  * 3. Returns it to the Controller.
 6.  **Controller Selects View:** The Controller now has the data. It decides that the `user_list.html` View is the correct one to display this data.
 7.  **View Renders:** The Controller passes the user data to the `user_list.html` View. The View uses this data to dynamically generate the final HTML page, perhaps by looping through the list of users and creating a table row for each one.
 8.  **Response to User:** The fully rendered View (the HTML page) is sent back to the user's browser, completing the cycle.
