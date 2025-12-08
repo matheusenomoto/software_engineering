@@ -118,6 +118,38 @@ These questions help you define **Model**, **View**, **Controller**, plus operat
 4. **Is the project folder structure decided?**
 5. **Is my environment ready to run the first request end-to-end?**
 
+## Coding
+
+[requirements & env](#requirements-&-env)
+[Configs](#configs)
+
+### requirements & env
+
+At this point the expertise on dummy projects can be good to know what will be the libs and frameworks needed, also the environments variables required. e.g:
+
+#### requirements.txt
+
+```txt
+fastapi[all]
+sqlalchemy
+psycopg2-binary
+passlib[bcrypt]
+python-jose[cryptography]
+pydantic-settings
+jinja2
+```
+#### .env
+```
+DATABASE_URL=postgresql://<user>:<pwd>@<ip>/<db>
+SECRET_KEY=a_very_secret_key_that_is_long_and_random_32_chars
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+### Configs
+
+This file will load your environment variables using Pydantic.
+app/core/config.py
+
 ## Extra
 
 ### Tech Stack & Architecture
